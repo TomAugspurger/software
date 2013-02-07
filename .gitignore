@@ -31,4 +31,10 @@
 *.xdy
 *.tdo
 *.fls
+
+
+*.sublime-project
+*.sublime-workspace
+
 proposal.pdf
+exploring.pdf
