@@ -19,8 +19,9 @@
     \item \textbf{State dependent patent policy:} $\mathbf{\eta} : \mathbf{N}_I \rightarrow \mathbb{R_+}$
     \item (Temporary) Leader is a max of two ``steps'' ahead.
     \item (Temporary) \textbf{Instant catch-up once patent expires.}
+    \item Patents expire with a Poisson rate $\eta$ (otherwise time since innovation becomes a state variable in the value functions.)
     \item (Temporary) Cost of R\&D is linear in innovation, $\Phi(x_i) = \phi x_i$.
-    \item (Temporary?) Interest rate $r$ is exogenous with some parameter restriction to ensure positive R\&D by each firm when they are tied.
+    \item (Temporary?) Interest rate $r$ is exogenous with some parameter restion to ensure positive R\&D by each firm when they are tied.
     \item logarithmic utility
     \item Cobb-Douglas production
     \item \textbf{free-entry into \emph{final} goods market.}
@@ -35,7 +36,7 @@
 
   Continuum of individuals (mass 1?) with 1 unit of labor supplied inelastically.
 
-  \begin{equation}
+  \begin{equation} \label{eq:pref}
     \mathbb{E}_t \int_t^\infty exp(-\rho(s - t))\mathrm{ln}\,   C(s)ds
   \end{equation}
 
@@ -63,7 +64,7 @@
 
   In the General Equilibrium setup, there's a continuum of intermediate goods with a CD production, differentiated into two varieties, each produced by a single firm.
 
-  \begin{equation}
+  \begin{equation} \label{eq:tech_output}
     \ln Y(t) = \int_{0}^{1} \ln y(j, t) d\,j 
   \end{equation}
 
@@ -74,4 +75,24 @@
   \end{equation}
 
   where $q_i$ is a technology level and $l_i$ is labor used.
+
+  Speaking of technology, every firm has the R\&D technology:
+
+  \begin{equation} \label{eq:tech_rd_technology}
+    x_i(j, t) = F(h_i(j, t))
+  \end{equation}
+
+  where $x_i$ is the flow rate of innovation and $h_i$ is the number of workers.  This means the cost of R\&D is $w(t)G(x_i(j,t)$ where $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$.
+
+  Law of motion for technology gap in industry $j$:
+
+  \begin{equation} \label{eq:tech_law_of_motion}
+    \eta_j(t + \Delta t) =
+    \begin{cases}
+      \eta_j(t) + 1 & \textrm{prob } x_i(j,t)\Delta t + o(\Delta t)\\
+      0 & \textrm{prob } x_{-i}(j,t)\Delta t + \eta_{n_{j(t)}}\Delta t + o(\Delta t) \\
+      \eta_j(t) & \textrm{prob } 1 - x_i(j,t)\Delta t + x_{-i}(j,t)\Delta t + \eta_{n_{j(t)}}\Delta t - o(\Delta t)
+    \end{cases}
+  \end{equation}
+
 \end{document}  
