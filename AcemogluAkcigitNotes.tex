@@ -1,0 +1,77 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Notes on Acemoglu and Akcigit}
+\author{Caleb Floyd and Tom Augspurger}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{The Model}
+\label{sec:the_model}
+
+\subsection{Assumptions}
+\label{sub:assumptions}
+
+  \begin{itemize}
+    \item \textbf{State dependent patent policy:} $\mathbf{\eta} : \mathbf{N}_I \rightarrow \mathbb{R_+}$
+    \item (Temporary) Leader is a max of two ``steps'' ahead.
+    \item (Temporary) \textbf{Instant catch-up once patent expires.}
+    \item (Temporary) Cost of R\&D is linear in innovation, $\Phi(x_i) = \phi x_i$.
+    \item (Temporary?) Interest rate $r$ is exogenous with some parameter resection to ensure positive R\&D by each firm when they are tied.
+    \item logarithmic utility
+    \item Cobb-Douglas production
+    \item \textbf{free-entry into \emph{final} goods market.}
+    \item \textbf{Two varieties of intermediates that are perfect substitutes and compete in Bertrand style.}
+    \item Consumers own balanced portfolio of intermediate producers.
+    \item (Temporary?) Catch-up and leader R\&D have the same costs and success probability.
+    \item Innovation technology $F \in C^2$, $F'(\,\cdot\,) > 0, F''(\,\cdot\,) < 0, F'(0) < \infty$, and $\ \exists\ \bar{h} \in (0, \infty) : F'(h) = 0 \forall h \geq \bar{h}$.
+  \end{itemize}
+
+\subsection{Preferences}
+\label{sub:preferences}
+
+  Continuum of individuals (mass 1?) with 1 unit of labor supplied inelastically.
+
+  \begin{equation}
+    \mathbb{E}_t \int_t^\infty exp(-\rho(s - t))\mathrm{ln}\,   C(s)ds
+  \end{equation}
+
+  where $\rho$ is a discount rate and $C(t)$ is consumption at $t$.
+
+\subsection{Production}
+\label{sub:production}
+
+  In the partial equilibrium setup, firms maximize
+
+  \begin{equation}
+    E_t \int_t^\infty exp(-r(s - t))[\pi_i(s) - \Phi_i(s)]ds
+  \end{equation}
+
+  where $r > 0$ is the interest rate, $\pi_i(t)$ is the instantaneous profit, $\Phi_i(t)$ is the R\&D cost.
+
+  Euler equation:
+
+  \begin{equation}
+    g(t) \equiv \frac{\dot{C}(t)}{C(t)} = \frac{\dot{Y}(t)}{Y(t)} = r(t) - \rho
+  \end{equation}
+
+  where $g(t)$ is growth rate of consumption / output, $r(t)$ is the interest rate.
+  Innovation follows a Poisson Process with rate of arrival $x_i$.
+
+  In the General Equilibrium setup, there's a continuum of intermediate goods with a CD production, differentiated into two varieties, each produced by a single firm.
+
+  \begin{equation}
+    \ln Y(t) = \int_{0}^{1} \ln y(j, t) d\,j 
+  \end{equation}
+
+  with individual production of good $j$ by firm $i$ at time $t$ as:
+
+  \begin{equation}
+    y(j, t) = q_i(j, t)l_i(j, t)
+  \end{equation}
+
+  where $q_i$ is a technology level and $l_i$ is labor used.
+\end{document}  
