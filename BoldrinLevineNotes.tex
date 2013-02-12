@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Notes on Boldrin and Levine}
+\author{Caleb Floyd and Tom Augspurger}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Model}
+\label{sec:model}
+
+\subsection{Assumptions}
+\label{sub:assumptions}
+
+\subsection{Seed 24/7}
+\label{sub:seed_24_7}
+
+\subsection{Seed General}
+\label{sub:seed_general}
+
+  Preferences: $\sum_t^\infty \delta^t [u(c_t) - wL_t]$
+
+  Production:
+
+  $c_t = F(k_t^c, l_t^c)$
+  $x_t = G(k_t^k, l_t^k)$
+
+  Equilibrium:
+
+  \begin{align}
+    \max_{k^c_t, l^c_t} & \ \ \ c_t\\
+    st. & 0 \leq c_t \leq F(k_t^c, l_t^c)\\
+        & 0 \leq x_t \leq F(k_t - k_t^c, L_t - l_t^c)
+  \end{align}
+
+  PPF: $c_t = T(k_t, x_t, L_t)$ Should be $l^c_t$.
+
+  Second maximization
+
+  \begin{align}
+    \max_{L_t} & \ \ \  u[T(k_t, x_t, L_t)] \\
+    s.t. \ \ \ & L_t \geq 0\\
+  \end{align}
+
+  yeild $V(k_t, x_t) = u[T(k_t, x_t, L(k_t, x_t))]$
+
+  finally giving
+
+  \begin{align}
+    \max_{k_{t=0}^\infty} & \ \ \ \sum_{t=0}^{\infty} \delta^t V(k_t, k_{t+1} - \beta k_t)\\
+    s.t. \ \ \ & \beta k_t + \bar{x}_{k_t} \geq k_{t+1} \geq \beta k_t
+  \end{align}
+
+  Value Function:
+
+  \begin{equation}
+    v(k) = \max u(c) + \delta v((\beta + \zeta)k - \beta c)\\
+  \end{equation}
+  
+  Substitute in:
+    $v(k) = \max u(\frac{(\beta + \zeta)k - k'}{\beta}) + \delta v((\beta + \zeta)k - \beta c$
+    
+  Giving first order conditions
+  \begin{align}
+    &\frac{u'(c)}{beta} = \delta v'(k')\\
+    &\frac{(\beta + \zeta)}{\beta} u'(c) = v'(k)\\
+    &\frac{u'(c)}{u'(c')} = \delta(\beta + \zeta)
+  \end{align}
+
+\subsection{Seed No Labor}
+\label{sub:seed_no_labor}
+
+\subsection{Seed 24/7 With Labor}
+\label{sub:seed_24_7_with_labor}
+
+\subsection{Seed Spillovers and Externalities}
+\label{sub:seed_spillovers_and_externalities}
+
+\subsection{Seed-Pills and Reverse Engineering}
+\label{sub:seed_pills_and_reverse_engineering}
+
+\section{TODO}
+\label{sec:todo}
+
+  \begin{itemize}
+    \item Figure out model 1: Seed with 24/7.
+    \item Cross partial on $T_{l_t,x_t}$
+    \item Resoucre constraint in 2.2.1 $k = c + \frac{x}{\beta}$
+  \end{itemize}
+  
+
+\end{document}  
