@@ -1,3 +1,12 @@
+"""
+Files available from:
+https://sites.google.com/site/patentdataproject/Home/downloads
+
+Directly:
+http://www.nber.org/~jbessen/patassg.dat.zip
+http://www.nber.org/~jbessen/pat76_06_assgasc.zip
+"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
