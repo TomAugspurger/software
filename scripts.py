@@ -9,6 +9,10 @@ http://www.nber.org/~jbessen/pat76_06_assgasc.zip
 
 import pandas as pd
 import matplotlib.pyplot as plt
+try:
+    from mpl_toolkits import basemap
+except ImportError:
+    print('Won\'t be able to plot the maps.')
 
 # Change path to local version.
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
@@ -42,3 +46,20 @@ by_ctry_time.index = by_ctry_time.index.swaplevel(1, 0)
 fig4 = (by_ctry_time.unstack()).plot()
 fig.set_xlabel('Year')
 fig.set_ylabel('Patents')
+
+## Experiments with basemap and shapefiles
+# Requires http://matplotlib.org/basemap/users/installing.html
+# Which relies on a C library.
+"""
+Doc Dump:
+
+State map from: http://www.arcgis.com/home/item.html?id=f7f805eb65eb4ab787a0a3e1116ca7e5
+matplotlib examples: http://matplotlib.org/basemap/users/examples.html
+filling: http://www.geophysique.be/2011/01/27/matplotlib-basemap-tutorial-07-shapefiles-unleached/
+http://matplotlib.1069221.n5.nabble.com/How-to-draw-a-specific-country-by-basemap-td15744.html
+http://www.naturalearthdata.com
+"""
+
+
+gr = df.groupby('state')
+cts = gr['patent'].count()
