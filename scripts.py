@@ -6,6 +6,7 @@ Directly:
 http://www.nber.org/~jbessen/patassg.dat.zip
 http://www.nber.org/~jbessen/pat76_06_assgasc.zip
 """
+from __future__ import division
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -23,33 +24,60 @@ cat = df['subcat']
 t = df[(cat == 46.0) | (cat == 21.0) | (cat == 22.0) | (cat == 23.0) |
     (cat == 24.0) | (cat == 25.0)]
 
-## Counts by year
-gr = df.groupby(df['gyear'])
-fig = gr['patent'].count().plot(rot=45)
-fig.set_xlabel('Year')
-fig.set_ylabel('Patents')
 
-## Claims per year?  Not really. lag.
-plt.figure()
-fig2 = (gr['nclaims'].sum() / gr['patent'].count()).plot()
-fig2.set_xlabel('Year')
-fig2.set_ylabel('Claims per Patent?')
+## Counts by year
+def by_year(df):
+    """Plots the number of patents granted by year.
+    """
+    gr = df.groupby(df['gyear'])
+    fig = gr['patent'].count().plot(rot=45)
+    fig.set_xlabel('Year')
+    fig.set_ylabel('Patents')
+    return fig
+
+
+def _get_ind(s, n=10):
+    """Helper to get the top n countries.
+    """
+    s.sort()
+    return s[-n:].index
+
 
 ## Patents by Country
-by_ctry = df.groupby('country')['patent'].count()
-by_ctry.sort()
-fig3 = by_ctry[-10:].plot(kind='barh')
-fig3.set_ylabel('Patents')
+def by_country(df):
+    by_ctry = df.groupby('country')['patent'].count()
+    idx = _get_ind(by_ctry)
+    fig = by_ctry[idx].plot(kind='barh')
+    fig.set_ylabel('Patents')
+    return fig, idx
 
 
 ## By Country and time.
-by_ctry_time = df.groupby(['country', 'gyear'])['patent'].count()
-idx = by_ctry[-10:].index
-by_ctry_time = by_ctry_time.ix[idx]
-by_ctry_time.index = by_ctry_time.index.swaplevel(1, 0)
-fig4 = (by_ctry_time.unstack()).plot()
-fig.set_xlabel('Year')
-fig.set_ylabel('Patents')
+def year_and_country(df, ind=None):
+    """Plot of the grants by year, differentiated by country.
+    Ind is a subset of the countries you want.  If not provided,
+    it will call by_country and get the 10 highest.
+    """
+    by_ctry_time = df.groupby(['country', 'gyear'])['patent'].count()
+    if ind is None:
+        idx = _get_ind(df.groupby('country')['patent'].count())
+    elif isinstance(ind, int):
+        idx = _get_ind(df.groupby('country')['patent'].count(), n=ind)
+    else:
+        idx = ind
+    by_ctry_time = by_ctry_time.ix[idx]
+    by_ctry_time.index = by_ctry_time.index.swaplevel(1, 0)
+    fig = (by_ctry_time.unstack()).plot()
+    fig.set_xlabel('Year')
+    fig.set_ylabel('Patents')
+    return fig
+
+"""
+Looks like the leaders change when just software.
+
+For all:  ['IT', 'CH', 'TW', 'CA', 'KR', 'GB', 'FR', 'DE', 'JP', 'US']
+software: ['NL', 'SE', 'GB', 'CA', 'FR', 'TW', 'DE', 'KR', 'JP', 'US']
+"""
 
 ## Experiments with basemap and shapefiles
 # Requires http://matplotlib.org/basemap/users/installing.html
