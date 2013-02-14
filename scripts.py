@@ -18,6 +18,10 @@ except ImportError:
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
 df = s['utility']
+# Just tech industries (see classifications.py)
+cat = df['subcat']
+t = df[(cat == 46.0) | (cat == 21.0) | (cat == 22.0) | (cat == 23.0) |
+    (cat == 24.0) | (cat == 25.0)]
 
 ## Counts by year
 gr = df.groupby(df['gyear'])
@@ -58,6 +62,7 @@ matplotlib examples: http://matplotlib.org/basemap/users/examples.html
 filling: http://www.geophysique.be/2011/01/27/matplotlib-basemap-tutorial-07-shapefiles-unleached/
 http://matplotlib.1069221.n5.nabble.com/How-to-draw-a-specific-country-by-basemap-td15744.html
 http://www.naturalearthdata.com
+http://pypi.python.org/pypi/GDAL/
 """
 
 
