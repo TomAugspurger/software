@@ -17,26 +17,43 @@
 \label{sub:assumptions}
 
   \begin{itemize}
-    \item \textbf{State dependent patent policy:} $\bm{\eta} : \bm{N}_I \rightarrow \mathbb{R_+}$
-    \item (Temporary) Leader is a max of two ``steps'' ahead.
-    \item (Temporary) \textbf{Instant catch-up once patent expires.}
-    \item Patents expire with a Poisson rate $\eta$ (otherwise time since innovation becomes a state variable in the value functions.)
-    \item (Temporary) Cost of R\&D is linear in innovation, $\Phi(x_i) = \phi x_i$.
-    \item (Temporary?) Interest rate $r$ is exogenous with some parameter restion to ensure positive R\&D by each firm when they are tied.
-    \item logarithmic utility
-    \item \textbf{Cobb-Douglas production} (``implies profits depend only on the technology gap of the industry and aggregate output. (page 14)'')
-    \item \textbf{free-entry into \emph{final} goods market.}
-    \item \textbf{Two varieties of intermediates that are perfect substitutes and compete in Bertrand style.}
-    \item Consumers own balanced portfolio of intermediate producers.
-    \item (Temporary?) Catch-up and leader R\&D have the same costs and success probability.
-    \item Innovation technology $F \in C^2$, $F'(\,\cdot\,) > 0, F''(\,\cdot\,) < 0, F'(0) < \infty$, and $\ \exists\ \bar{h} \in (0, \infty) : F'(h) = 0 \forall h \geq \bar{h}$.
-    \item Only focus on Markov perfect Equilibria (strategies are functions only of payoff-relevant state variables.)
+    \item IPR Policy
+    \begin{itemize}
+      \item \textbf{State dependent patent policy:} $\bm{\eta} : \bm{N}_I \rightarrow \mathbb{R_+}$      
+    \end{itemize}
+
+    \item Technology
+    \begin{itemize}
+      \item (Temporary) Leader is a max of two ``steps'' ahead.
+      \item (Temporary) \textbf{Instant catch-up once patent expires.}
+      \item Patents expire with a Poisson rate $\eta$ (otherwise time since innovation becomes a state variable in the value functions.)
+      \item \textbf{Linear Costs important for Proposition 1}.
+      \item \textbf{Cobb-Douglas production} (``implies profits depend only on the technology gap of the industry and aggregate output. (page 14)'')
+      \item \textbf{free-entry into \emph{final} goods market.}  
+      \item \textbf{Two varieties of intermediates that are perfect substitutes and compete in Bertrand style.}
+      \item (Temporary?) Catch-up and leader R\&D have the same costs and success probability.
+      \item Innovation technology $F \in C^2$, $F'(\,\cdot\,) > 0, F''(\,\cdot\,) < 0, F'(0) < \infty$, and $\ \exists\ \bar{h} \in (0, \infty) : F'(h) = 0 \forall h \geq \bar{h}$.
+    \end{itemize}
+    
+    \item Preferences
+    \begin{itemize}
+      \item (Temporary?) Interest rate $r$ is exogenous with some parameter restion to ensure positive R\&D by each firm when they are tied.
+      \item logarithmic utility
+      \item Consumers own balanced portfolio of intermediate producers. 
+    \end{itemize}
+    
+    \item Equilibrium
+    \begin{itemize}
+      \item Only focus on Markov perfect Equilibria (strategies are functions only of payoff-relevant state variables.)
+      \item $G'^{-1}((1 0 \lambda^{-1}) / (\rho + \eta)) > 0$ Implies positive RND in equilibrium.
+    \end{itemize}
+    
   \end{itemize}
 
 \subsection{Preferences}
 \label{sub:preferences}
 
-  Continuum of individuals (mass 1?) with 1 unit of labor supplied inelastically.
+  Continuum of individuals with 1 unit of labor supplied inelastically.
 
   \begin{equation} \label{eq:pref}
     \mathbb{E}_t \int_t^\infty exp(-\rho(s - t))\mathrm{ln}\,   C(s)ds
@@ -111,5 +128,71 @@
   $\bm{\mu}(t) \equiv {\mu_n(t)}_n^\infty$ is a distribution of \emph{industries} over \emph{technology gaps} (and not the other way around).  This means that (I think), $\bm{\mu}(t)$ is a valid pdf.
 
   $\xi_n(t)$ is a list of decisions for the leader with a technology gap $n$.  Includes R\&D, price, and output for the leader and just R\&D for the follower.  Footnote 15 notes that the choices for price output depend on the actual level of the technology $x_{ij}(t)$, not just the gap.  But profits (p * y) are independent of the level, and just depend on the gap.
+
+  For an optimal policy $\hat{x}$ the leader in some industries with a lead of $n$ steps has a present discounted value of 
+
+  \begin{equation}
+    V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]ds
+  \end{equation}
+  with $\Pi(s)$ operating profits and the last term is the wage bill on R\&D.  I think this is just a single industry so there will be another integral over all industries (whose distribution is $\bm{\mu}$).
+
+  Here we have the central optimization problems.
+
+  Leaders:
+
+  \begin{equation} \label{eq:rvf_leader}  % rvf: recursive value function
+    pv_n = \max_{x_n \geq 0} (1 - \lambda^{-n}) - \omega^*G(x_n) + x_n[v_{n+1} - v_n] + [x_{-n}^* + \eta_n][v_0 - v_n]
+  \end{equation}
+
+  Tied:
+
+  \begin{equation} \label{eq:rvf_tied}
+    \rho v_0 = \max_{x_0 \geq 0} -\omega^*G(x_{0} + x_{0}[v_1 - v_0] + x_0^*[v_{-1} - v_0]
+  \end{equation}
+
+  and followers:
+
+  \begin{equation} \label{eq:rvf_follower}
+    \rho v_{n-1} \max_{x_n \geq 0} -\omega^*G(x_{-n} + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
+    \end{equation}
+
+  Whose solutions satisfy:
+
+  \begin{align} \label{eq:ss_rd_policies}
+    x_n^*    &= max \big\{G'^{-1}\frac{[v_{n+1} - v_n]}{\omega^*}   ,0\}  
+    x_{-n}^* &= max \big\{G'^{-1}\frac{[v_0  - v_{-n}]}{\omega^*}   ,0\}
+    x_0^*    &= max \big\{G'^{-1}\frac{[v_1     - v_0]}{\omega^*}   ,0\}
+  \end{align}
+  
+  which says that innovation rates increase when the value of moving ahead another step is larger or the cost of R\&D is ($\omega*$) is lower.  Go on to discuss some \emph{positive} incentive effects from \emph{weakening} patent protection (p18).
+
+  From here they use the steady state distribution of leads over industries to equal the flows into a given lead (leader innovating) to the flows out (catch up or patent expiry).
+
+
+\subsection{Steady-State Equilibria}
+\label{sub:steady_state_equilibria}
+  
+  \subsubsection{Uniform IPR}
+  \label{subsub:uniform_ipr}
+    Get some results on existence with positive RND.  Find $\mathbb{x}^* = \{x_n^*\}_n=1^{\infty}$ is \emph{decreasing} so R\&D is decreasing in the technology gap via smaller increase in the markup gap for each lead increase.  Also get highest R\&D when firms are tied.
+
+  \subsubsection{State-Dependent IPR}
+  \label{state_dependent_ipr}
+    Get existence. No analytical results.
+
+    Define welfare at date zero.  Function of date zero output, $\rho$ (discount factor), and $g^*$ (growth rate of wages I think? Or output or the quality index?). Take two identical date-0 economies and set them off to steady state under different IPR policies.  Key parameter here is $Q(t)$ the quality index.
+
+    Two types of effects:
+    \begin{itemize}
+      \item Growth Effect: via growth rate.  Is $g^*/\rho^2$.
+      \item Distribution Effect: $\ln(\sum_{n=0}^{\infty} n\mu_n)/\rho - \ln\omega(0)$.
+    \end{itemize}
+
+    Growth effects will dominate (as they tend to do).  For a variety of reasons this equilibrium is inefficient.
+
+\subsection{Optimal IPR Policy, Quantitative Results}
+\label{sub:optimal_ipr_policy_quantitative_results}
+
+  One possible interpretation of state-contingent IPR policy is if you get too far ahead the government comes in a ends your monopoly.
 
 \end{document}  
