@@ -72,6 +72,25 @@ def year_and_country(df, ind=None):
     fig.set_ylabel('Patents')
     return fig
 
+fig1 = plt.figure()
+fig1 = by_year(df)
+
+fig2 = plt.figure()
+fig2 = by_country(df)
+
+fig3 = plt.figure()
+fig3 = year_and_country(df)
+
+fig4 = plt.figure()
+fig4 = by_year(t)
+
+fig5 = plt.figure()
+fig5 = by_country(t)
+
+fig6 = plt.figure()
+fig6 = year_and_country(t)
+
+
 """
 Looks like the leaders change when just software.
 
