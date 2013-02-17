@@ -26,10 +26,11 @@ t = df[(cat == 46.0) | (cat == 21.0) | (cat == 22.0) | (cat == 23.0) |
 
 
 ## Counts by year
-def by_year(df):
+def by_year(df, year_col='appyear'):
     """Plots the number of patents granted by year.
+    year_col can be appyear or gyear (applied vs. granted).
     """
-    gr = df.groupby(df['gyear'])
+    gr = df.groupby(df[year_col])
     fig = gr['patent'].count().plot(rot=45)
     fig.set_xlabel('Year')
     fig.set_ylabel('Patents')
@@ -53,12 +54,12 @@ def by_country(df):
 
 
 ## By Country and time.
-def year_and_country(df, ind=None):
+def year_and_country(df, ind=None, year_col='appyear'):
     """Plot of the grants by year, differentiated by country.
     Ind is a subset of the countries you want.  If not provided,
     it will call by_country and get the 10 highest.
     """
-    by_ctry_time = df.groupby(['country', 'gyear'])['patent'].count()
+    by_ctry_time = df.groupby(['country', year_col])['patent'].count()
     if ind is None:
         idx = _get_ind(df.groupby('country')['patent'].count())
     elif isinstance(ind, int):
