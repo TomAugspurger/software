@@ -26,8 +26,7 @@ s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 df = s['cites']
 gr = df.groupby('citing')  # Careful when working with this guy.
 
-u = df['citing'].unique()
-test = u[:100]
+test = df[:100]
 
 # Method 1
 # d = {c: df['cited'][df['citing'] == c].values for c in test}
