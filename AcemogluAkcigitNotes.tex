@@ -148,6 +148,15 @@
 
   where $\omega(t) \equiv \frac{w(t)}{Y(t)}$.
 
+  The derivation of equation (27) and the one just prior, the value of the firm, is give by:
+
+  \begin{align} \label{eq:firm_value}
+    \lim_{\Delta \rightarrow 0}& \frac{V_n(t) - exp(-r(t + \Delta t)\Delta t)V_n(t + \Delta t)}{\Delta t}\\
+    &= \lim_{\Delta \rightarrow 0} \frac{V_n(t) - V_n(t + \Delta t)}{\Delta t} - \frac{exp(-r(t + \Delta t)\Delta t)V_n(t + \Delta t) + V_n(t + \Delta t)}{\Delta t}\\
+    &= -\dot{V_n}(t) + V_n(t) \lim_{\Delta \rightarrow 0}\Big[\frac{1 - eqp(-r(t + \Delta t)\Delta t)}{\Delta t}]\\
+    &= rV_n(t) - \dot{V_n}(t)
+  \end{align}
+
   Here we have the central optimization problems.
 
   Leaders:
@@ -184,6 +193,9 @@
 \subsection{Existence and Characterization of Steady-State Equilibria}
 \label{sub:existence_and_characterization_of_steady_state_equilibria}
   
+  \textbf{DEFINITION 3 (Steady-State Equilibrium).} Given an IPR policy $\eta$, a steady-state equilibrium is a tuple $<\mathbb{\mu}^*, \mathbb{v}, \mathbb{x}^*, \omega^∗, g^∗>$ such that the distribution of industries $\mu^∗$ satisfy (35), (36), and (37), the values $\mathbb{v} \equiv \{vn\}_{n=-\infty}^{\infty}$ satisfy (29), (30), and (31), the R\&D decision $x^∗$ is given by (32), (33), and (34), the steady-state labor share ω∗ satisfies (38) and the steady-state growth rate g∗ is given by (39).
+
+
   \subsubsection{Uniform IPR}
   \label{subsub:uniform_ipr}
     Get some results on existence with positive RND.  Find $\mathbb{x}^* = \{x_n^*\}_n=1^{\infty}$ is \emph{decreasing} so R\&D is decreasing in the technology gap via smaller increase in the markup gap for each lead increase.  Also get highest R\&D when firms are tied.
