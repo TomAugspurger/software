@@ -95,6 +95,8 @@
 
   where $q_i$ is a technology level and $l_i$ is labor used.
 
+  The leader will sell at the follower's marginal cost $MC_i(j, t) = \frac{w(t)}{q_i(j, t)}$
+
   Speaking of technology, every firm has the R\&D technology:
 
   \begin{equation} \label{eq:tech_rd_technology}
@@ -121,7 +123,7 @@
                 &= (1 - \lambda^{\eta_j(t)})Y(t)
   \end{align*}
 
-  first line is price - marginal cost times quantity.  And the second line relates profites to the technology gap and aggregate output.  This should just be the leader who is selling in the industry, but I need to double check that.
+  first line is price -  follower's marginal cost times quantity.  And the second line relates profites to the technology gap and aggregate output.  Last line translates back to q-terms via the $\lambda$ to the technology gap.
 
 \subsection{Equilibrium}
 \label{sub:equilibrium}
@@ -129,12 +131,22 @@
 
   $\xi_n(t)$ is a list of decisions for the leader with a technology gap $n$.  Includes R\&D, price, and output for the leader and just R\&D for the follower.  Footnote 15 notes that the choices for price output depend on the actual level of the technology $x_{ij}(t)$, not just the gap.  But profits (p * y) are independent of the level, and just depend on the gap.
 
+  \subsubsection{Steady-State Equilibrium}
+  \label{subsub:steady_state_equilibrium}
   For an optimal policy $\hat{x}$ the leader in some industries with a lead of $n$ steps has a present discounted value of 
 
   \begin{equation}
     V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]ds
   \end{equation}
   with $\Pi(s)$ operating profits and the last term is the wage bill on R\&D.  I think this is just a single industry so there will be another integral over all industries (whose distribution is $\bm{\mu}$).
+
+  Labor market clearing:
+
+  \begin{equation} \label{eq:labor_clearing}
+    1 \geq \sum_0^{\infty} \mu_n(t) \Big[\frac{1}{\omega(t)\lambda^n} + G(x_n(t)) + G(x_{-n}(t))\Big]
+  \end{equation}
+
+  where $\omega(t) \equiv \frac{w(t)}{Y(t)}$.
 
   Here we have the central optimization problems.
 
@@ -169,8 +181,8 @@
   From here they use the steady state distribution of leads over industries to equal the flows into a given lead (leader innovating) to the flows out (catch up or patent expiry).
 
 
-\subsection{Steady-State Equilibria}
-\label{sub:steady_state_equilibria}
+\subsection{Existence and Characterization of Steady-State Equilibria}
+\label{sub:existence_and_characterization_of_steady_state_equilibria}
   
   \subsubsection{Uniform IPR}
   \label{subsub:uniform_ipr}
