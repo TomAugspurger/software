@@ -3,23 +3,46 @@ Based on the citations datafile:
 
 http://elsa.berkeley.edu/~bhhall/pat/cite76_06.zip
 
-Note tested for now on the 75-99 file.  The full is STATA only
-and I need to get a campus computer to read it and convert to a csv.
-Might add new dependencies: networkgraphx and pygraphviz
-the latter depends on graphviz (which is installed via brew)
+Cleaning:
+import pandas as pd
+import statsmodels.api as sm
+
+f = open('cite_76_06.dta')
+g = sm.iolib.StataReader(f)
+l = [x for x in g.dataset()]  # Took ~ 4.1 GB of ram
+
+df = pd.DataFrame(l)
+df.colums = ['citing', 'cited', 'num']
+
 
 """
 
 import pandas as pd
-import pygraphviz as pgv
+import matplotlib.pyplot as plt
+import networkx as nx
+from networkx import graphviz_layout
 
-df = pd.read_csv('cite75_99.txt')
-gr = df.groupby('CITING')  # Careful when working with this guy.
+s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
+df = s['cites']
+gr = df.groupby('citing')  # Careful when working with this guy.
 
-u = df['CITING'].unique()
+u = df['citing'].unique()
 test = u[:100]
-d = {c: df['CITED'][df['CITING'] == c].values for c in test}
 
-A = pgv.AGraph(d, directed=True)
-A.layout(prog='neato')  # Set graph structure. Don't use fdp.
-A.draw('test_neato.png')
+# Method 1
+# d = {c: df['cited'][df['citing'] == c].values for c in test}
+
+
+# Method 2
+gr = test.groupby('cited')
+t = gr['citing']
+d = {k: v.values for k, v in t}
+
+
+A = nx.Graph(d, directed=True)
+pos = nx.graphviz_layout(A, prog='twopi', root=0)
+nx.draw(A, pos, with_labels=False, alpha=.5)
+plt.draw()
+fig = plt.gcf()
+ax = fig.axes[0]
+plt.savefig('test_twopi.png')
