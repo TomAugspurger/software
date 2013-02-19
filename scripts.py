@@ -20,6 +20,10 @@ s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
 df = s['utility']
 # Just tech industries (see classifications.py)
+# {46: 'Semiconductor Devices', 21: 'Communications',
+#    22: 'Computer Hardware & Software',
+#    23: 'Computer Peripherials', 24: 'Information Storage',
+#    25: 'Electronic business methods and software']
 cat = df['subcat']
 t = df[(cat == 46.0) | (cat == 21.0) | (cat == 22.0) | (cat == 23.0) |
     (cat == 24.0) | (cat == 25.0)]

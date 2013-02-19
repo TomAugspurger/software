@@ -13,8 +13,6 @@ l = [x for x in g.dataset()]  # Took ~ 4.1 GB of ram
 
 df = pd.DataFrame(l)
 df.colums = ['citing', 'cited', 'num']
-
-
 """
 
 import pandas as pd
