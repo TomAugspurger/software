@@ -1,52 +1,87 @@
-# Took 51:16.792941
 from __future__ import division
 
-import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 from scipy import sparse
 from scipy.io import loadmat, savemat
-import matplotlib.pyplot as plt
 from datetime import datetime
 try:
     import gmail
 except ImportError:
     pass
 
-start = datetime.now()
+
+# Change path to local version.
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
-net = s['cites']
-s.close()
 
-t_net = net
 
-t_idx = pd.Series(np.union1d(t_net['citing'].unique(),
-    t_net['cited'].unique()))
+def get_tech_patents(store=pd.HDFStore(
+        '/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')):
+    """
+    Just tech industries (see classifications.py)
+    store is an HDFStore with the utility file.
+    returns a DataFrame with patent numbers.
+    """
+    df = store['utility']
+    cat = df['subcat']
+    t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
 
-d = t_idx.to_dict()
-inv_d = {v:k for k, v in d.iteritems()}
+    return t[['patent']]
 
-### Full iterative
-rows = []
-cols = []
+def filter(full, tech, filter_='citing', store=pd.HDFStore(
+        '/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')):
+    """
+    full is all the pairs.  Tech is from get_tech_patents.
+    Probably will filter via CITING, not CITED.
+    """
+    sub = np.intersect1d(tech['patent'].unique(),
+        full[filter_].unique())  # with len 261445
+    return full[full[filter_].isin(sub)]  # Pretty expensive
 
-for k in t_net.index:
-    i = inv_d[t_net.ix[k]['citing']]
-    j = inv_d[t_net.ix[k]['cited']]
-    rows.append(i)
-    cols.append(j)
-    if k % 1000 == 0:
-        print k
 
-rows = np.array(rows)
-cols = np.array(cols)
-data = np.ones(len(t_net))
-N = np.max([cols.max(), rows.max()])
-sp = sparse.coo_matrix((data, (rows, cols)), shape=(N + 1, N + 1))
-savemat('/Users/tom/tom/DataStorage/Patents/sparse_out.mat', {'A': sp})
+def gen_sparse_matrix(save=True, mail=True,
+        store=pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')):
+    """
+    Testing
+    """
+    start = datetime.now()
+    net = store['cites']
+    tech = filter(net, get_tech_patents(store))  # Comes close to paging out.
 
-try:
-    time = str(datetime.now() - start)
-    gmail.mail('thomas-augspurger@uiowa.edu', 'Results',
-        time)
-except:
-    print(str(datetime.now() - start))
+    idx = pd.Series(np.union1d(tech['citing'].unique(),
+            tech['cited'].unique()))
+    d = idx.to_dict()                        # d : Z -> Patents
+    inv_d = {v: k for k, v in d.iteritems()}  # inv_d : Patents -> Z
+
+    rows = []
+    cols = []
+    final = tech.index[-1]
+    print(len(tech.index))
+    for k in tech.index:
+        i = inv_d[tech.ix[k]['citing']]
+        j = inv_d[tech.ix[k]['cited']]
+        rows.append(i)
+        cols.append(j)
+        if k % 10000 == 0:
+            print(k / final)
+
+    rows = np.array(rows)
+    cols = np.array(cols)
+    data = np.ones(len(tech))
+    N = np.max([cols.max(), rows.max()])
+    sp = sparse.coo_matrix((data, (rows, cols)), shape=(N + 1, N + 1))
+    if save is not None:
+        try:
+            savemat(save, {'A': sp})
+        except:  # CHECK THIS ERROR
+            savemat('/Users/tom/tom/DataStorage/Patents/sparse_out.mat',
+                {'A': sp})
+    if mail:
+        try:
+            time = str(datetime.now() - start)
+            gmail.mail('thomas-augspurger@uiowa.edu', 'Results',
+                time)
+        except:
+            print(str(datetime.now() - start))
+    return sp
