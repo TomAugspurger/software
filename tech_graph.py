@@ -5,7 +5,13 @@ import pandas as pd
 from scipy import sparse
 from scipy.io import loadmat, savemat
 import matplotlib.pyplot as plt
+from datetime import datetime
+try:
+    import gmail
+except ImportError:
+    pass
 
+start = datetime.now()
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 net = s['cites']
 s.close()
@@ -36,3 +42,8 @@ data = np.ones(len(t_net))
 N = np.max([cols.max(), rows.max()])
 sp = sparse.coo_matrix((data, (rows, cols)), shape=(N + 1, N + 1))
 savemat('/Users/tom/tom/DataStorage/Patents/sparse_out.mat', {'A': sp})
+
+try:
+    time = str(datetime.now() - start)
+    gmail.mail('thomas-augspurger@uiowa.edu', 'Results',
+        time)
