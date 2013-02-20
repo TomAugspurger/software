@@ -1,3 +1,4 @@
+# Took 51:16.792941
 from __future__ import division
 
 import numpy as np
