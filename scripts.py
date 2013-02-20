@@ -25,8 +25,7 @@ df = s['utility']
 #    23: 'Computer Peripherials', 24: 'Information Storage',
 #    25: 'Electronic business methods and software']
 cat = df['subcat']
-t = df[(cat == 46.0) | (cat == 21.0) | (cat == 22.0) | (cat == 23.0) |
-    (cat == 24.0) | (cat == 25.0)]
+t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
 
 
 ## Counts by year
