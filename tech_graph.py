@@ -1,72 +1,38 @@
+from __future__ import division
+
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import networkx as nx
-from networkx import graphviz_layout
 from scipy import sparse
+from scipy.io import loadmat, savemat
+import matplotlib.pyplot as plt
 
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
-# ut = s['utility']
 net = s['cites']
+s.close()
 
-######################### Break Here ##############################
-# d = {22: 'Computer Hardware & Software',
-#     24: 'Information Storage',
-#     25: 'Electronic business methods and software'}
-########
-####### Full Run ###########
+t_net = net
 
-# Only got about .6% there after 2 hours.
-a = net['citing'].unique()
-b = net['cited'].unique()
-ind = np.union1d(a, b)
-idx = pd.Series(ind)
+t_idx = pd.Series(np.union1d(t_net['citing'].unique(),
+    t_net['cited'].unique()))
 
+d = t_idx.to_dict()
+inv_d = {v:k for k, v in d.iteritems()}
+
+### Full iterative
 rows = []
 cols = []
 
-for k in net.index:
-    i = (idx[idx == net.ix[k]['citing']]).index[0]
-    j = (idx[idx == net.ix[k]['cited']]).index[0]
+for k in t_net.index:
+    i = inv_d[t_net.ix[k]['citing']]
+    j = inv_d[t_net.ix[k]['cited']]
     rows.append(i)
     cols.append(j)
+    if k % 1000 == 0:
+        print k
 
 rows = np.array(rows)
 cols = np.array(cols)
-data = np.ones(len(net))
+data = np.ones(len(t_net))
 N = np.max([cols.max(), rows.max()])
 sp = sparse.coo_matrix((data, (rows, cols)), shape=(N + 1, N + 1))
-
-### Practice ###
-# t_net = net.head(100)
-
-# t_a = t_net['citing'].unique()
-# t_b = t_net['cited'].unique()
-# t_ind = np.union1d(t_a, t_b)
-# t_idx = pd.Series(t_ind)
-
-# # rows = []
-# # cols = []
-
-# # def app(x, rows, cols):
-# #     i = (t_idx[t_idx == x['citing']]).index[0]
-# #     j = (t_idx[t_idx == x['cited']]).index[0]
-# #     rows.append(i)
-# #     cols.append(j)
-
-# # t_net.apply(app, axis=1, args=(rows, cols))
-
-# rows = []
-# cols = []
-
-# for k in t_net.index:
-#     i = (t_idx[t_idx == t_net.ix[k]['citing']]).index[0]
-#     j = (t_idx[t_idx == t_net.ix[k]['cited']]).index[0]
-#     rows.append(i)
-#     cols.append(j)
-
-# rows = np.array(rows)
-# cols = np.array(cols)
-# data = np.ones(len(t_net))
-# N = np.max([cols.max(), rows.max()])
-# sp = sparse.coo_matrix((data, (rows, cols)), shape=(N + 1, N + 1))
+savemat('/Users/tom/tom/DataStorage/Patents/sparse_out.mat', {'A': sp})
