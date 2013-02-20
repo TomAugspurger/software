@@ -47,3 +47,5 @@ try:
     time = str(datetime.now() - start)
     gmail.mail('thomas-augspurger@uiowa.edu', 'Results',
         time)
+except:
+    print(str(datetime.now() - start))
