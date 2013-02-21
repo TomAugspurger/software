@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{natbib}
+\usepackage[colorlinks=true, citecolor=blue]{hyperref}
 \graphicspath{{../resources/}}
 
 \title{Notes on Boldrin and Levine}
@@ -54,7 +55,7 @@
 
   \textsc{Production:} As mentioned above, production is a function of labor and capital, and is split into production of a consumption good and production of capital.
 
-  \begin{flalign}
+  \begin{flalign} \label{eq:general_tech}
     & c_t = F(k_t^c, l_t^c)\\
     & x_t = G(k_t^k, l_t^k)\\
     & k_{t+1} = \beta k_t + x_t \ \ \ \ \ \ \ \ \ \ \beta > 0
@@ -69,7 +70,7 @@
     & \ \ \ \, \ \ \ \ 0 \leq x_t \leq F(k_t - k_t^c, L_t - l_t^c)
   \end{align}
 
-  PPF: $c_t = T(k_t, x_t, L_t)$ Should be $l^c_t$?.
+  PPF: $c_t = T(k_t, x_t, L_t)$ Should be $l^c_t$?
   \begin{center}
     \includegraphics[scale=.31]{example_ppf_wire.png}
     \label{fig:ppf}
@@ -93,28 +94,33 @@
 
   Which is similar to condition \ref{eq:24_7_profit} above.
   
-  Value Function:
+  
+\subsection{Seed No Labor}
+\label{sub:seed_no_labor}
+  
+  No labor, so like the first model, but we let $\beta < 1$. We get a value function:
 
-  \begin{equation}
+  \begin{equation} \label{eq:no_labor_vf}
     v(k) = \max u(c) + \delta v((\beta + \zeta)k - \beta c)\\
   \end{equation}
   
   Substitute in:
-    $v(k) = \max u(\frac{(\beta + \zeta)k - k'}{\beta}) + \delta v((\beta + \zeta)k - \beta c$
-    
-  Giving first order conditions
-  \begin{align}
-    &\frac{u'(c)}{beta} = \delta v'(k')\\
-    &\frac{(\beta + \zeta)}{\beta} u'(c) = v'(k)\\
-    &\frac{u'(c)}{u'(c')} = \delta(\beta + \zeta)
-  \end{align}
 
-\subsection{Seed No Labor}
-\label{sub:seed_no_labor}
+  \begin{equation}
+      v(k) = \max u(\frac{(\beta + \zeta)k - k'}{\beta}) + \delta v((\beta + \zeta)k - \beta c  
+  \end{equation}  
+  Giving first order condition on consumption, the envelope condition, and the Euler equation:
+
+  \begin{align}
+    &\frac{u'(c)}{\beta} = \delta v'(k') \label{no_labor_foc}\\
+    &\frac{(\beta + \zeta)}{\beta} u'(c) = v'(k) \label{no_labor_ec} \\
+    &\frac{u'(c)}{u'(c')} = \delta(\beta + \zeta) \label{no_labor_ee}
+  \end{align}
 
 \subsection{Seed 24/7 With Labor}
 \label{sub:seed_24_7_with_labor}
 
+  Including labor again with only one type of output, capital growing exogenously (given $k_0$) at $\beta^t$.  They start with a Leontieff production function so in equilibrium when $c_t = k_t = L_t$.  Again we have that competitive rents of (marginal utility - marginal cost) --- that is ($u'(c_t) - w$)--- accrue to the innovator.  These drop to zero as the total supply grows.  Scarcity of supply is driving this all again.
 \subsection{Seed Spillovers and Externalities}
 \label{sub:seed_spillovers_and_externalities}
 
