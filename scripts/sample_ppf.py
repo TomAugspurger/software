@@ -28,7 +28,9 @@ for ax in [ax1, ax2]:
     ax.view_init(elev=14, azim=10)
 
 p = ax1.plot_wireframe(X, Y, Z, rstride=2, cstride=2)
+plt.figure(1)
 plt.savefig('../resources/example_ppf_wire.png', dpi=100)  # Up dpi for final
 
 p2 = ax2.plot_surface(X, Y, Z, cmap=plt.cm.jet)
+plt.figure(2)
 plt.savefig('../resources/example_ppf_surface.png', dpi=100)
