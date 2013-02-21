@@ -30,6 +30,8 @@ ax1.set_ylabel('Investmnet')
 ax1.set_zlabel('Labor')
 ax1.set_title('Example PPF')
 p = ax1.plot_wireframe(X, Y, Z, rstride=2, cstride=2)
+# Adjust view
+plt.savefig('../resources/example_ppf_wire.png', dpi=100)  # Up dpi for final
 
 # Surface
 fig2 = plt.figure()
@@ -40,3 +42,5 @@ ax2.set_xlabel('Capital Stock')
 ax2.set_ylabel('Investmnet')
 ax2.set_zlabel('Labor')
 p2 = ax2.plot_surface(X, Y, Z, cmap=plt.cm.jet)
+# Adjust view
+plt.savefig('../resources/example_ppf_surface.png', dpi=100)
