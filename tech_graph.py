@@ -6,6 +6,7 @@ import numpy as np
 from scipy import sparse
 from scipy.io import loadmat, savemat
 from datetime import datetime
+import os
 try:
     import gmail
 except ImportError:
@@ -29,6 +30,7 @@ def get_tech_patents(store=pd.HDFStore(
 
     return t[['patent']]
 
+
 def filter(full, tech, filter_='citing', store=pd.HDFStore(
         '/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')):
     """
@@ -38,6 +40,22 @@ def filter(full, tech, filter_='citing', store=pd.HDFStore(
     sub = np.intersect1d(tech['patent'].unique(),
         full[filter_].unique())  # with len 261445
     return full[full[filter_].isin(sub)]  # Pretty expensive
+
+
+def save_(file_, matrix, conflict=0, name='A'):
+    """
+    """
+    if os.path.exists(file_):
+        parts = file_.split('.')
+        file_ = ''.join(parts[:-1]) + str(conflict) + '.' + ''.join(parts[-1])
+        conflict += 1
+        return save_(file_, matrix, conflict=conflict)
+    else:
+        try:
+            savemat(file_, {name: matrix})
+            print('Saved the matrix to %s' % file_)
+        except IOError:
+            print('Failed to save the matrix')
 
 
 def gen_sparse_matrix(save=True, mail=True,
@@ -71,12 +89,12 @@ def gen_sparse_matrix(save=True, mail=True,
     data = np.ones(len(tech))
     N = np.max([cols.max(), rows.max()])
     sp = sparse.coo_matrix((data, (rows, cols)), shape=(N + 1, N + 1))
-    if save is not None:
+    if save:
         try:
-            savemat(save, {'A': sp})
-        except:  # CHECK THIS ERROR
-            savemat('/Users/tom/tom/DataStorage/Patents/sparse_out.mat',
-                {'A': sp})
+            save_(save, sp)
+        except IOError:
+            save_('/Users/tom/tom/DataStorage/Patents/sparse_out.mat',
+                sp)
     if mail:
         try:
             time = str(datetime.now() - start)
