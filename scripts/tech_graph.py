@@ -1,5 +1,7 @@
 from __future__ import division
 
+from cPickle import dump
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -57,6 +59,27 @@ def save_(file_, matrix, conflict=0, name='A'):
         except IOError:
             print('Failed to save the matrix')
 
+
+def gen_dicts(name_1, name_2, just_tech=True,
+        store=pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')):
+    """
+    For use when looking up later.
+    name_1 and name_2 are filenames for the pickles. One for # -> Z, second
+    for inverse.
+    """
+    net = store['cites']
+    if just_tech:
+        tech = filter(net, get_tech_patents(store))  # Comes close to paging out.
+        idx = pd.Series(np.union1d(tech['citing'].unique(),
+            tech['cited'].unique()))
+    else:
+        raise NotImplemented
+    d = idx.to_dict()                         # d : Z -> Patents
+    inv_d = {v: k for k, v in d.iteritems()}  # inv_d : Patents -> Z
+    with open(name_1, 'w') as f:
+        dump(d, f, 2)
+    with open(name_2, 'w') as f:
+        dump(inv_d, f, 2)
 
 def gen_sparse_matrix(save=True, mail=True,
         store=pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')):

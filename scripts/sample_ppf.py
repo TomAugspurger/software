@@ -31,6 +31,10 @@ p = ax1.plot_wireframe(X, Y, Z, rstride=2, cstride=2)
 plt.figure(1)
 plt.savefig('../resources/example_ppf_wire.png', dpi=100)  # Up dpi for final
 
-p2 = ax2.plot_surface(X, Y, Z, cmap=plt.cm.jet)
+p2 = ax2.plot_surface(X, Y, Z, alpha=.1)
+cset = ax2.contour(X, Y, Z, zdir='z', offset=0, cmap=plt.cm.Accent)
+cset = ax2.contour(X, Y, Z, zdir='x', offset=0, cmap=plt.cm.Accent)
+cset = ax2.contour(X, Y, Z, zdir='y', offset=0, cmap=plt.cm.Accent)
+
 plt.figure(2)
 plt.savefig('../resources/example_ppf_surface.png', dpi=100)
