@@ -92,12 +92,15 @@ class Lookup(object):
                 patent = self.patents[0]
 
         a = df[df['patent'] == patent]
-        all_a = df[df['uspto_assignee'] == a['uspto_assignee'].values[0]]
-        self.uspto_assignee = a['uspto_assignee'].values[0]
-        self.all = all_a
-        self.patents.append(x for x in all_a['patent'].tolist())
-        self.patents = [x for x in flatten(self.patents)]
-        return all_a
+        try:
+            all_a = df[df['uspto_assignee'] == a['uspto_assignee'].values[0]]
+            self.uspto_assignee = a['uspto_assignee'].values[0]
+            self.all = all_a
+            self.patents.append(x for x in all_a['patent'].tolist())
+            self.patents = [x for x in flatten(self.patents)]
+            return all_a
+        except IndexError:
+            print('No match for that patent number.')
 
 if __name__ == '__main__':
     # Quick access to website.
