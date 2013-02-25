@@ -3,6 +3,7 @@ from cPickle import load
 
 import pandas as pd
 
+
 class Lookup(object):
     """
     Example:
@@ -20,7 +21,7 @@ class Lookup(object):
         self.d_int_to_patent = None
         self.utility = None
         self.uspto_assignee = None
-    
+
     def init_dicts(self, d1='just_tech_int_to_patent.pkl',
         d2='just_tech_patent_to_int.pkl'):
         try:
@@ -34,8 +35,9 @@ class Lookup(object):
         except IOError:
             raise IOError('Can\'t get the dict.')
 
-    def patent_to_web(self):
+    def patent_to_web(self, google=False):
         """Go to USPTO website.
+        google is a Bool. if True, use the google.
         Use a generator to avoid open a bunch at once.
         Either use g = self.patent_to_web() and g.next() or loop through
         with an iterator (for i in g).
@@ -43,10 +45,14 @@ class Lookup(object):
         def _patent_to_web(xs):
             for i in xs:
                 print i
-                base_url1 = r'http://patft.uspto.gov/netacgi/nph-Parser?TERM1='
-                base_url2 = r'&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=0&f=S&l=50'
-                full = base_url1 + str(i) + base_url2
-                yield webbrowser.open(full)
+                if not google:
+                    base_url1 = r'http://patft.uspto.gov/netacgi/nph-Parser?TERM1='
+                    base_url2 = r'&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=0&f=S&l=50'
+                    full = base_url1 + str(i) + base_url2
+                    yield webbrowser.open(full)
+                else:
+                    url = 'http://www.google.com/patents/US' + str(i)
+                    yield webbrowser.open(url)
 
         if isinstance(self.patents, int):
             return _patent_to_web([self.patents])
@@ -63,7 +69,7 @@ class Lookup(object):
         return self.d_int_to_patent[int_]
 
     def patent_to_int(self, patent):
-        return self.d_patent_to_int(patent)
+        return self.d_patent_to_int(patent)        
 
     def get_all(self, patent=None):
         """Lookup the owner and get all patents from that owner.
