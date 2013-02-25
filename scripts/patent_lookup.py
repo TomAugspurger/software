@@ -2,6 +2,7 @@ import webbrowser
 from cPickle import load
 
 import pandas as pd
+from matplotlib.cbook import flatten
 
 
 class Lookup(object):
@@ -16,7 +17,10 @@ class Lookup(object):
     def __init__(self, patents):
         """Allow num to be a single patent or a list?
         """
-        self.patents = patents
+        if isinstance(patents, list):
+            self.patents = patents
+        else:
+            self.patents = [patents]
         self.d_patent_to_int = None
         self.d_int_to_patent = None
         self.utility = None
@@ -54,10 +58,7 @@ class Lookup(object):
                     url = 'http://www.google.com/patents/US' + str(i)
                     yield webbrowser.open(url)
 
-        if isinstance(self.patents, int):
-            return _patent_to_web([self.patents])
-        elif isinstance(self.patents, list):
-            return _patent_to_web(self.patents)
+        return _patent_to_web(self.patents)
 
     def int_to_web(self, int_):
         self.patent_to_web(self.int_to_patent(int_))
@@ -69,11 +70,11 @@ class Lookup(object):
         return self.d_int_to_patent[int_]
 
     def patent_to_int(self, patent):
-        return self.d_patent_to_int(patent)        
+        return self.d_patent_to_int(patent)
 
     def get_all(self, patent=None):
         """Lookup the owner and get all patents from that owner.
-        If patents is a lists, maybe specify a number.
+        Also will add all the patents to self.patents
         """
         if self.utility is None:
             print("Loading the utility file...")
@@ -85,7 +86,7 @@ class Lookup(object):
 
         if patent is None:
             patent = [self.patents][0]
-            if isinstance(self.patents, list):
+            if len(self.patents) > 1:
                 print('Just matching for the first patent {}.\n'.format(
                     self.patents[0]))
                 patent = self.patents[0]
@@ -94,6 +95,8 @@ class Lookup(object):
         all_a = df[df['uspto_assignee'] == a['uspto_assignee'].values[0]]
         self.uspto_assignee = a['uspto_assignee'].values[0]
         self.all = all_a
+        self.patents.append(x for x in all_a['patent'].tolist())
+        self.patents = [x for x in flatten(self.patents)]
         return all_a
 
 if __name__ == '__main__':
