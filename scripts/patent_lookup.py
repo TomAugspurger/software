@@ -1,9 +1,16 @@
 import webbrowser
 from cPickle import load
 
+import pandas as pd
 
 class Lookup(object):
     """
+    Example:
+
+    apple = df[df['uspto_assignee'] == 32940]  # Apple, 1559 patents
+    c = Lookup(apple['patent'].tolist())
+    g = c.patent_to_web()
+    g.next()
     """
     def __init__(self, patents):
         """Allow num to be a single patent or a list?
@@ -11,7 +18,9 @@ class Lookup(object):
         self.patents = patents
         self.d_patent_to_int = None
         self.d_int_to_patent = None
-
+        self.utility = None
+        self.uspto_assignee = None
+    
     def init_dicts(self, d1='just_tech_int_to_patent.pkl',
         d2='just_tech_patent_to_int.pkl'):
         try:
@@ -55,6 +64,31 @@ class Lookup(object):
 
     def patent_to_int(self, patent):
         return self.d_patent_to_int(patent)
+
+    def get_all(self, patent=None):
+        """Lookup the owner and get all patents from that owner.
+        If patents is a lists, maybe specify a number.
+        """
+        if self.utility is None:
+            print("Loading the utility file...")
+            s = pd.HDFStore(
+                '/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
+            self.utility = s['utility']
+            s.close()
+        df = self.utility
+
+        if patent is None:
+            patent = [self.patents][0]
+            if isinstance(self.patents, list):
+                print('Just matching for the first patent {}.\n'.format(
+                    self.patents[0]))
+                patent = self.patents[0]
+
+        a = df[df['patent'] == patent]
+        all_a = df[df['uspto_assignee'] == a['uspto_assignee'].values[0]]
+        self.uspto_assignee = a['uspto_assignee'].values[0]
+        self.all = all_a
+        return all_a
 
 if __name__ == '__main__':
     # Quick access to website.
