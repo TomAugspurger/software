@@ -74,7 +74,17 @@ class Lookup(object):
 
     def get_all(self, patent=None):
         """Lookup the owner and get all patents from that owner.
-        Also will add all the patents to self.patents
+        Also will add all the patents to self.patents.
+
+        Note:  If you're looking up a bunch of patents from different
+        companies, you can avoid reading in the utility file n times
+        by doing:
+            c1 = Lookup(n1)
+            c1.get_all()  # Reads the utility file
+
+            c2 = Lookup(n2)
+            c2.utility = c1.utility
+            c2.get_all()
         """
         if self.utility is None:
             print("Loading the utility file...")
