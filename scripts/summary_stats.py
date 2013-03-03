@@ -108,6 +108,19 @@ fig6 = plt.figure()
 fig6 = year_and_country(t)
 
 
+## Select the lagest Not working.  Need to figure out
+# just what the groupby apply is returning.
+# def get_largest(t, c=1500):
+#     """
+#     Return just those with at least c patents.
+#     c = 1500 returns 25 for this version.
+#     """
+#     gr = t['patent'].groupby(t['uspto_assignee'])
+#     large_idx = gr.apply(lambda x: len(x) > c)
+#     m = t['uspto_assignee']
+#     return t[m.isin(large_idx.index[large_idx])]
+
+
 """
 Looks like the leaders change when just software.
 
