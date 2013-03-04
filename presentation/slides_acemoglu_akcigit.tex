@@ -31,27 +31,123 @@
 
 \begin{frame}[t]\frametitle{Intro}
   \begin{itemize}
-    \item Dynamic environment to study optimal \emph{state-dependent} Intellectual Property Right policy.
-    \item IPR depends on technology gap in an industry (state-dependence).
-    \item Motivates leader to continue innovating.
+    \item<+-> Dynamic environment to study optimal \emph{state-dependent} Intellectual Property Right policy.
+    \item<+-> IPR depends on technology gap in an industry (state-dependence).
+    \item<+-> Motivates leader to continue innovating.
   \end{itemize}
 \end{frame}
 
 \section{Literature Review}
 \label{sec:literature_review}
+\begin{frame}[t]\frametitle{Previous Research} 
   \begin{itemize}
     \item Technology rungs (we saw in class)
-    \item Look for predecessors of state-dependent IPR.  They claim to ``explicitly introduce'' it.
-    \item Look for predecessor of dynamic effects, not just static R\&D incentives / monopoly rents tradeoff.
-    \item Par. 3 pg. 5 notes some mechanism-design papers that might be worth skimming for previous research.
-  \end{itemize}
+    %\item Look for predecessors of state-dependent IPR.  They claim to ``explicitly introduce'' it.
+    %\item Look for predecessor of dynamic effects, not just static R\&D incentives / monopoly rents tradeoff.
+    %\item Par. 3 pg. 5 notes some mechanism-design papers that might be worth skimming for previous research.
+  \end{itemize}  
+\end{frame}
 
+\section{Contributions}
+\label{sec:contributions}
+
+\begin{frame}[t]\frametitle{New Contributions} 
+  \begin{itemize}
+    \item State-dependent IPR.
+    \item Slow catch-up, compulsory licensing %(check on this).
+    \item Full GE model % (probably done before, but first in the Aghion et. al line?)
+  \end{itemize}
+\end{frame}
 
 \section{Model}
 \label{sec:model}
 
-\subsection{setup}
-\label{sub:setup}
+\subsection{Preferences}
+\label{sub:preferences}
+
+\begin{frame}[t]\frametitle{Consumers' Preferences} 
+  Single final good.  Continuum of 1 individuals.
+  \begin{equation*} \label{eq:pref}
+    \mathbb{E}_t \int_t^\infty exp(-\rho(s - t))\mathrm{ln}\,   C(s)ds
+  \end{equation*}
+  where $\rho$ is the discount factor.
+  
+  Also supply 1 unit of labor inelastically. 
+\end{frame}
+
+\subsection{Production}
+\label{sub:production}
+
+\begin{frame}[t]\frametitle{Technology-Final Good} 
+  \begin{itemize}
+    \item Output of final good: $Y(t) = C(t)$.
+    
+    \item Production of $Y(t)$:
+      \begin{equation} \label{eq:tech_output}
+        % Why log output? Cobb-Douglas since log of products is sum
+        % i.e. the integral?  CD need not be HOD 1.
+        \ln Y(t) = \int_{0}^{1} \ln y(j, t) d\,j 
+      \end{equation}
+      where $y(j, t)$ is the output of intermediate good $j$.
+    
+    %% Is this the right place for EE? 
+    % \item Euler Equation:
+    %   \begin{equation*}
+    %     g(t) \equiv \frac{\dot{C}(t)}{C(t)} = \frac{\dot{Y}(t)}{Y(t)} = r(t) - \rho
+    %   \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Technology-Intermediate Good} 
+  \begin{itemize}
+    \item Intermediate goods produced according to:
+      \begin{equation*} \label{eq:intermediate_production}
+        y(j, t) = q_i(j, t)l_i(j, t)
+      \end{equation*}
+      where $q_i$ is a technology level and $l_i$ is labor used. 
+
+    \item Yields marginal cost:
+      \begin{equation*} \label{eq:marginal_cost}
+        MC_i(j, t) = \frac{w(t)}{q_i(j, t)}
+      \end{equation*}
+
+    \item $i$ denotes the firm.  Each industry $\in [0, 1]$ has two firms competing.
+
+    \item Bertrand competition implies limit pricing:
+      \begin{equation*} \label{eq:limit_pricing}
+        MC_i(j, t) = \frac{w(t)}{q_i(j, t)}
+      \end{equation*}
+  
+    \item Cobb-Douglas production of final good implies:
+    %  TODO: Verify this.
+      \begin{equation}
+        y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)
+      \end{equation}
+      where $-i$ denotes the follower (less advanced technology).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Technology-Innovation} 
+  \begin{itemize}
+    \item Successful innovation by the leader increments technology by factor $\lambda$.
+    \item If the follower innovates, he catches up with the leader (Not patent infringing).
+    \item Innovation follows Poisson process with flow rate:
+      \begin{equation} \label{eq:tech_rd_technology}
+        x_i(j, t) = F(h_i(j, t))
+      \end{equation}
+      where $h_i(j, t)$ is the number of workers employed in R\&D.
+      Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ for later.
+    \item Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the number of innovations by $t$ in industry $j$.
+    \item Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
+  \end{itemize}
+
+\subsection{Patent Policy}
+\label{sub:patent_policy}
+  \begin{itemize}
+    \item Patents expire at Poisson rate: $\eta_j(t)$
+  \end{itemize}
+
+\end{frame}
 
 \subsection{Equilibrium}
 \label{sub:equilibrium}
