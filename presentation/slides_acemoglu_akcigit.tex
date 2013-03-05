@@ -115,15 +115,14 @@
 
     \item Limit pricing:
       \begin{equation*} \label{eq:limit_pricing}
-        MC_i(j, t) = \frac{w(t)}{q_i(j, t)}
+        p(j, t) = \frac{w(t)}{q_{-i}(j, t)}      
       \end{equation*}
-  
+    where $-i$ denotes the follower (less advanced technology).
     \item Cobb-Douglas production of final good implies:
     %  TODO: Verify this.
       \begin{equation}
         y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)
       \end{equation}
-      where $-i$ denotes the follower (less advanced technology).
   \end{itemize}
 \end{frame}
 
@@ -136,8 +135,8 @@
         x_i(j, t) = F(h_i(j, t))
       \end{equation}
       where $h_i(j, t)$ is the number of workers employed in R\&D.
-      Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ for later.
-    \item Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the number of innovations by $t$ in industry $j$.
+      Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
+    \item Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the number of innovations by firm $i$ in industry $j$.
     \item Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
   \end{itemize}
 \end{frame}
