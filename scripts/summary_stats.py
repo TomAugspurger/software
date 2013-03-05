@@ -39,15 +39,27 @@ t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
 
 
 ## Counts by year
-def by_year(df, year_col='appyear'):
-    """Plots the number of patents granted by year.
+def by_year(df, year_col='appyear', adj=False):
+    """
+    Plots the number of patents granted by year.
     year_col can be appyear or gyear (applied vs. granted).
     """
-    gr = df.groupby(df[year_col])
-    fig = gr['patent'].count().plot(rot=45)
-    fig.set_xlabel('Year')
-    fig.set_ylabel('Patents')
-    return fig
+    if adj and year_col == 'appyear':
+        print("You really shouldn't adjust when using application year.")
+    elif adj:
+        gr = df.groupby(df[year_col])
+        # the .mean() of hjtwt does nothing.  Should all be the same within a year
+        fig = (gr.count()['patent'] * gr.mean()['hjtwt']).plot(rot=45)
+        fig.set_xlabel('Year')
+        fig.set_ylabel('Patents')
+    else:
+        gr = df.groupby(df[year_col])
+        gr = df.groupby(df[year_col])
+        fig = gr['patent'].count().plot(rot=45)
+        fig.set_xlabel('Year')
+        fig.set_ylabel('Patents')
+    ax = fig.axes
+    return fig, ax
 
 
 def _get_ind(s, n=10):
@@ -63,46 +75,62 @@ def by_country(df):
     idx = _get_ind(by_ctry)
     fig = by_ctry[idx].plot(kind='barh')
     fig.set_ylabel('Patents')
-    return fig, idx
+    ax = fig.axes
+    return fig, ax, idx
 
 
 ## By Country and time.
-def year_and_country(df, ind=None, year_col='appyear'):
+def year_and_country(df, ind=None, year_col='appyear', adj=False):
     """Plot of the grants by year, differentiated by country.
     Ind is a subset of the countries you want.  If not provided,
     it will call by_country and get the 10 highest.
+
+    adj: Bool defaults to True.  If true we'll scale by the hjtwt calculation.
     """
-    by_ctry_time = df.groupby(['country', year_col])['patent'].count()
     if ind is None:
         idx = _get_ind(df.groupby('country')['patent'].count())
     elif isinstance(ind, int):
         idx = _get_ind(df.groupby('country')['patent'].count(), n=ind)
     else:
         idx = ind
+    if adj and year_col == 'appyear':
+        raise ValueError('May not want to mix appyear and adjustment')
+        pass
+    elif adj:
+        gr = df.groupby(['country', year_col])
+        by_ctry_time = gr['patent'].count() * gr['hjtwt'].mean()
+    else:
+        by_ctry_time = df.groupby(['country', year_col])['patent'].count()
+
     by_ctry_time = by_ctry_time.ix[idx]
     by_ctry_time.index = by_ctry_time.index.swaplevel(1, 0)
     fig = (by_ctry_time.unstack()).plot()
     fig.set_xlabel('Year')
     fig.set_ylabel('Patents')
-    return fig
+    ax = fig.axes
+    return fig, ax
 
 fig1 = plt.figure()
-fig1 = by_year(df)
+fig1, ax1 = by_year(df, year_col='gyear', adj=True)
+ax1.set_xlim(1970.)
 
 fig2 = plt.figure()
-fig2 = by_country(df)
+fig2, ax2, idx = by_country(df)
+
 
 fig3 = plt.figure()
-fig3 = year_and_country(df)
+fig3, ax3 = year_and_country(df, ind=idx, year_col='gyear', adj=True)
+ax3.set_xlim(1970)
 
 fig4 = plt.figure()
-fig4 = by_year(t)
+fig4, ax4 = by_year(t)
+ax4.set_xlim(1970)
 
 fig5 = plt.figure()
-fig5 = by_country(t)
+fig5, ax5, idx = by_country(t)
 
 fig6 = plt.figure()
-fig6 = year_and_country(t)
+fig6, ax6 = year_and_country(t)
 
 
 ## Select the lagest Not working.  Need to figure out
