@@ -10,10 +10,7 @@ from __future__ import division
 
 import pandas as pd
 import matplotlib.pyplot as plt
-try:
-    from mpl_toolkits import basemap
-except ImportError:
-    print('Won\'t be able to plot the maps.')
+from patent_lookup import Lookup
 
 # Change path to local version.
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
@@ -145,3 +142,23 @@ http://pypi.python.org/pypi/GDAL/
 
 gr = df.groupby('state')
 cts = gr['patent'].count()
+
+
+### Really should break this into multiple files:
+### Section citations
+
+def get_most_cited():
+    s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
+    ser = s['cites']['cited']
+    s.close()
+    r = ser.value_counts()
+    patent_num = r.index[0]
+    cited = r[patent_num]
+    c = Lookup(patent_num)
+    return c, cited
+
+r, number = get_most_cited()
+r.patent_to_web().next()
+# Bubble jet recording method and apparatus in which a heating element
+# generates bubbles in a liquid flow path to project droplets.
+# Ink jet printers!  Canon gets 1 & 2; 3 is DNA
