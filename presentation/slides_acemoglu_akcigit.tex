@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{bm}
+\setbeamercovered{transparent}
 
 \title{Slides for Acemoglue Akcigit (2012)}
 \author{Caleb Floyd and Tom Augspurger}
@@ -41,10 +42,10 @@
 \label{sec:literature_review}
 \begin{frame}[t]\frametitle{Previous Research} 
   \begin{itemize}
-    \item Technology rungs (we saw in class)
-    %\item Look for predecessors of state-dependent IPR.  They claim to ``explicitly introduce'' it.
-    %\item Look for predecessor of dynamic effects, not just static R\&D incentives / monopoly rents tradeoff.
-    %\item Par. 3 pg. 5 notes some mechanism-design papers that might be worth skimming for previous research.
+    \item<+-> Technology rungs (we saw in class)
+    %\item<+-> Look for predecessors of state-dependent IPR.  They claim to ``explicitly introduce'' it.
+    %\item<+-> Look for predecessor of dynamic effects, not just static R\&D incentives / monopoly rents tradeoff.
+    %\item<+-> Par. 3 pg. 5 notes some mechanism-design papers that might be worth skimming for previous research.
   \end{itemize}  
 \end{frame}
 
@@ -53,9 +54,9 @@
 
 \begin{frame}[t]\frametitle{New Contributions} 
   \begin{itemize}
-    \item State-dependent IPR.
-    \item Slow catch-up, compulsory licensing %(check on this).
-    \item Full GE model % (probably done before, but first in the Aghion et. al line?)
+    \item<+-> State-dependent IPR.
+    \item<+-> Slow catch-up, compulsory licensing %(check on this).
+    \item<+-> Full GE model % (probably done before, but first in the Aghion et. al line?)
   \end{itemize}
 \end{frame}
 
@@ -80,9 +81,9 @@
 
 \begin{frame}[t]\frametitle{Technology-Final Good} 
   \begin{itemize}
-    \item Output of final good: $Y(t) = C(t)$.
+    \item<+-> Output of final good: $Y(t) = C(t)$.
     
-    \item Production of $Y(t)$:
+    \item<+-> Production of $Y(t)$:
       \begin{equation} \label{eq:tech_output}
         % Why log output? Cobb-Douglas since log of products is sum
         % i.e. the integral?  CD need not be HOD 1.
@@ -91,7 +92,7 @@
       where $y(j, t)$ is the output of intermediate good $j$.
     
     %% Is this the right place for EE? 
-    % \item Euler Equation:
+    % \item<+-> Euler Equation:
     %   \begin{equation*}
     %     g(t) \equiv \frac{\dot{C}(t)}{C(t)} = \frac{\dot{Y}(t)}{Y(t)} = r(t) - \rho
     %   \end{equation*}
@@ -100,25 +101,25 @@
 
 \begin{frame}[t]\frametitle{Technology-Intermediate Good} 
   \begin{itemize}
-    \item $i$ denotes the firm.  Each industry $\in [0, 1]$ has two firms competing.
+    \item<+-> $i$ denotes the firm.  Each industry $\in [0, 1]$ has two firms competing.
 
-    \item Intermediate goods produced according to:
+    \item<+-> Intermediate goods produced according to:
       \begin{equation*} \label{eq:intermediate_production}
         y(j, t) = q_i(j, t)l_i(j, t)
       \end{equation*}
       where $q_i$ is a technology level and $l_i$ is labor used. 
 
-    \item Yields marginal cost:
+    \item<+-> Yields marginal cost:
       \begin{equation*} \label{eq:marginal_cost}
         MC_i(j, t) = \frac{w(t)}{q_i(j, t)}
       \end{equation*}
 
-    \item Limit pricing:
+    \item<+-> Limit pricing:
       \begin{equation*} \label{eq:limit_pricing}
         p(j, t) = \frac{w(t)}{q_{-i}(j, t)}      
       \end{equation*}
     where $-i$ denotes the follower (less advanced technology).
-    \item Cobb-Douglas production of final good implies:
+    \item<+-> Cobb-Douglas production of final good implies:
     %  TODO: Verify this.
       \begin{equation}
         y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)
@@ -128,16 +129,16 @@
 
 \begin{frame}[t]\frametitle{Technology-Innovation} 
   \begin{itemize}
-    \item Successful innovation by the leader increments technology by factor $\lambda$.
-    \item If the follower innovates, he catches up with the leader (Not patent infringing).
-    \item Innovation follows Poisson process with flow rate:
+    \item<+-> Successful innovation by the leader increments technology by factor $\lambda$.
+    \item<+-> If the follower innovates, he catches up with the leader (Not patent infringing).
+    \item<+-> Innovation follows Poisson process with flow rate:
       \begin{equation} \label{eq:tech_rd_technology}
         x_i(j, t) = F(h_i(j, t))
       \end{equation}
       where $h_i(j, t)$ is the number of workers employed in R\&D.
       Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
-    \item Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the number of innovations by firm $i$ in industry $j$.
-    \item Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
+    \item<+-> Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the number of innovations by firm $i$ in industry $j$.
+    \item<+-> Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
   \end{itemize}
 \end{frame}
 
@@ -146,9 +147,9 @@
 
 \begin{frame}[t]\frametitle{Patent Policy}
   \begin{itemize}
-    \item Patents expire at Poisson rate: $\eta_{n_j}(t)$
-    \item Preserves stationarity of the value functions.
-    \item Law of motion for technology gap in industry $j$:
+    \item<+-> Patents expire at Poisson rate: $\eta_{n_j}(t)$
+    \item<+-> Preserves stationarity of the value functions.
+    \item<+-> Law of motion for technology gap in industry $j$:
       \begin{equation*} \label{eq:tech_law_of_motion}
         \eta_j(t + \Delta t) =
         \begin{cases}
@@ -176,8 +177,8 @@
 
 \begin{frame}[t]\frametitle{Labor Market} 
   \begin{itemize}
-    \item Three sources of demand: Production of intermediaries, and R\&D by each firm.
-    \item Combine demand for intermediates: $y(j, t) = q_i(j, t)l_i(j, t)$, and $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ to get
+    \item<+-> Three sources of demand: Production of intermediaries, and R\&D by each firm.
+    \item<+-> Combine demand for intermediates: $y(j, t) = q_i(j, t)l_i(j, t)$, and $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ to get
 
       \begin{equation}
         l_n(t) = \frac{\lambda^{-n}Y(t)}{w(t)}
@@ -194,29 +195,29 @@
 \label{sub:steady_state}
 \begin{frame}[t]\frametitle{Firm's Value Function} 
   \begin{itemize}
-    \item Net present value when leading by $n$:
+    \item<+-> Net present value when leading by $n$:
       \begin{equation*}
         V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]\,ds 
       \end{equation*}
-    \item As a ``normalized''value function ($v_n(t) = V_n(t) / Y(t)$):
+    \item<+-> As a ``normalized''value function ($v_n(t) = V_n(t) / Y(t)$):
       \begin{equation*} \label{eq:rvf_leader}  % rvf: recursive value function
           pv_n = \max_{x_n \geq 0} (1 - \lambda^{-n}) - \omega^*G(x_n) + x_n[v_{n+1} - v_n] + [x_{-n}^* + \eta_n][v_0 - v_n]
         \end{equation*}
-    \item Instantaneous operating profits: $(1 - \lambda^{-n})$.
-    \item R\&D costs: $\omega^*(t)G(x_n(t))$.
-    \item With probability $x_n(t)$ you innovate.
-    \item With probability $x_{-n}^*(t) + \eta_n$ he innovates or your patent expires.
+    \item<+-> Instantaneous operating profits: $(1 - \lambda^{-n})$.
+    \item<+-> R\&D costs: $\omega^*(t)G(x_n(t))$.
+    \item<+-> With probability $x_n(t)$ you innovate.
+    \item<+-> With probability $x_{-n}^*(t) + \eta_n$ he innovates or your patent expires.
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Firm's Value Function} 
   \begin{itemize}
-    \item Tied firms value function:
+    \item<+-> Tied firms value function:
       \begin{equation*} \label{eq:rvf_tied}
         \rho v_0 = \max_{x_0 \geq 0} -\omega^*G(x_{0} + x_{0}[v_1 - v_0] + x_0^*[v_{1} - v_0]
       \end{equation*}
 
-    \item Follower's value function:
+    \item<+-> Follower's value function:
       \begin{equation*} \label{eq:rvf_follower}
         \rho v_{-n} \max_{x_-n \geq 0} -\omega^*G(x_{-n} + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
       \end{equation*}

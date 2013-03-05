@@ -8,6 +8,7 @@ http://www.nber.org/~jbessen/pat76_06_assgasc.zip
 """
 from __future__ import division
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from patent_lookup import Lookup
@@ -47,13 +48,14 @@ def by_year(df, year_col='appyear', adj=False, style='k-', ax=None):
     if adj:
         gr = df.groupby(df[year_col])
         # the .mean() of hjtwt does nothing.  Should all be the same within a year
-        fig = (gr.count()['patent'] * gr.mean()['hjtwt']).plot(rot=45, style=style)
+        fig = np.log((gr.count()['patent'] * gr.mean()['hjtwt'])).plot(
+            rot=45, style=style, ax=ax)
         fig.set_xlabel('Year')
         fig.set_ylabel('Patents')
     else:
         gr = df.groupby(df[year_col])
         gr = df.groupby(df[year_col])
-        fig = gr['patent'].count().plot(rot=45)
+        fig = gr['patent'].count().plot(rot=45, style=style, ax=ax)
         fig.set_xlabel('Year')
         fig.set_ylabel('Patents')
     ax = fig.axes
@@ -105,18 +107,55 @@ def year_and_country(df, ind=None, year_col='appyear', adj=False):
     ax = fig.axes
     return fig, ax
 
-# By year, adjusted and unadjusted
+# By application year, adjusted and unadjusted
 
 fig = plt.figure()
-ax1 = fig.add_subplot(111)
-fig1, ax1 = by_year(df, adj=True)
-ax1_2 = fig.add_subplot(111)
-fig1, ax1_2 = by_year(df)
-ax1.set_xlim(1970.)
+ax1 = fig.add_subplot(211)
+fig1, ax1 = by_year(df, adj=True, ax=ax1)
+ax1_2 = fig.add_subplot(212)
+fig1, ax1_2 = by_year(df, ax=ax1_2)
+ax1.set_title('Adjusted for Truncation')
+ax1_2.set_title('Unadjusted')
+axes_ = [ax1, ax1_2]
+for ax in axes_:
+    ax.set_xlim(1970, 2010)
+    ax.set_yscale('log')
+fig.tight_layout()
+plt.draw()
+plt.savefig('../resources/application_year.png', dpi=100)
 
-fig2 = plt.figure()
-fig2, ax2, idx = by_country(df)
+# By grant year, adjusted and unadjusted
+fig = plt.figure()
+ax1 = fig.add_subplot(211)
+fig1, ax1 = by_year(df, adj=True, ax=ax1, year_col='gyear')
+ax1_2 = fig.add_subplot(212)
+fig1, ax1_2 = by_year(df, ax=ax1_2, year_col='gyear')
+ax1.set_title('Adjusted for Truncation')
+ax1_2.set_title('Unadjusted')
+axes_ = [ax1, ax1_2]
+for ax in axes_:
+    ax.set_xlim(1970, 2010)
+    ax.set_yscale('log')
+fig.tight_layout()
+plt.draw()
+plt.savefig('../resources/grant_year.png', dpi=100)
 
+# All and tech by country:
+by_ctry = df.groupby('country')['patent'].count()
+t_by_ctry = t.groupby('country')['patent'].count()
+idx = _get_ind(by_ctry)
+t_idx = _get_ind(t_by_ctry)
+
+comb = pd.DataFrame([by_ctry[idx], t_by_ctry[t_idx]]).T
+comb.columns = ['All', 'Tech']
+# Think about dropping NA
+ax = comb.plot(kind='barh', stacked=True)
+ax.set_xlabel('Patents Granted')
+plt.savefig('by_country.png', dpi=100)
+normed = comb.div(comb.sum(1), axis=0)
+ax2 = normed.plot(kind='barh', stacked=True)
+ax2.set_xlabel('Proportion of Tech Patents')
+plt.savefig('by_country_normalized.png', dpi=100)
 
 fig3 = plt.figure()
 fig3, ax3 = year_and_country(df, ind=idx, adj=True)
@@ -126,8 +165,6 @@ fig4 = plt.figure()
 fig4, ax4 = by_year(t)
 ax4.set_xlim(1970)
 
-fig5 = plt.figure()
-fig5, ax5, idx = by_country(t)
 
 fig6 = plt.figure()
 fig6, ax6 = year_and_country(t)
