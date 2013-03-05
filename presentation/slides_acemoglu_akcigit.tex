@@ -140,20 +140,71 @@
     \item Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the number of innovations by $t$ in industry $j$.
     \item Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
   \end{itemize}
+\end{frame}
 
 \subsection{Patent Policy}
 \label{sub:patent_policy}
-  \begin{itemize}
-    \item Patents expire at Poisson rate: $\eta_j(t)$
-  \end{itemize}
 
+\begin{frame}[t]\frametitle{Patent Policy}
+  \begin{itemize}
+    \item Patents expire at Poisson rate: $\eta_{n_j}(t)$
+    \item Preserves stationarity of value function.
+    \item Law of motion for technology gap in industry $j$:
+      \begin{equation*} \label{eq:tech_law_of_motion}
+        \eta_j(t + \Delta t) =
+        \begin{cases}
+          \eta_j(t) + 1 & \textrm{prob } x_i(j,t)\Delta t + o(\Delta t)\\
+          0 & \textrm{prob } x_{-i}(j,t)\Delta t + \eta_{n_{j(t)}}\Delta t + o(\Delta t) \\
+          \eta_j(t) & \textrm{prob } 1 - x_i(j,t)\Delta t \ldots\\
+            & \ \ \ \ \ + x_{-i}(j,t)\Delta t + \eta_{n_{j(t)}}\Delta t - o(\Delta t)
+        \end{cases}
+      \end{equation*}
+  \end{itemize}
 \end{frame}
+
+% \subsection{Profits}
+% \label{sub:profits}
+
+
 
 \subsection{Equilibrium}
 \label{sub:equilibrium}
+\begin{frame}[t]\frametitle{Equilibrium} 
 
+  $\bm{\mu}(t) \equiv {\mu_n(t)}_{n=0}^\infty$ is a distribution of \emph{industries} over \emph{technology gaps}.
+  
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Labor Market} 
+  \begin{itemize}
+    \item Three sources of demand: Production of intermediaries, and R\&D by each firm.
+    \item Combine demand for intermediates: $y(j, t) = q_i(j, t)l_i(j, t)$, and $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ to get
+
+      \begin{equation}
+        l_n(t) = \frac{\lambda{-n}Y(t)}{w(t)}
+      \end{equation}
+    and so
+      \begin{equation} \label{eq:labor_clearing}
+        1 \geq \sum_0^{\infty} \mu_n(t) \Big[\frac{1}{\omega(t)\lambda^n} + G(x_n(t))    + G(x_{-n}(t))\Big]
+      \end{equation}
+      where $\omega(t)$ is labor's share of income.
+
+  \end{itemize}
+\end{frame}
 \subsection{Steady State}
 \label{sub:steady_state}
+\begin{frame}[t]\frametitle{Firm's Value Function} 
+  Net present value when leading by $n$:
+  \begin{equation*}
+    V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]\,ds 
+  \end{equation*}
+
+  \begin{align*}
+    rV_n(t) - \dot{V_n}(t) = &[\Pi_n^*(t) - w^*(t)G(x_n(t))] + x_n(t)[V_{n+1}(t) - V_n(t)] \\
+                             &+ (x_{-n}^*(t) + \eta_n)[V_0(t) - V_n(t)]
+  \end{align*}
+\end{frame}
 
 \subsection{Characterization}
 \label{sub:characterization}
