@@ -195,14 +195,42 @@
 \subsection{Steady State}
 \label{sub:steady_state}
 \begin{frame}[t]\frametitle{Firm's Value Function} 
-  Net present value when leading by $n$:
-  \begin{equation*}
-    V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]\,ds 
-  \end{equation*}
+  \begin{itemize}
+    \item Net present value when leading by $n$:
+      \begin{equation*}
+        V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]\,ds 
+      \end{equation*}
+    \item As a ``normalized''value function ($v_n(t) = V_n(t) / Y(t)$):
+      \begin{equation*} \label{eq:rvf_leader}  % rvf: recursive value function
+          pv_n = \max_{x_n \geq 0} (1 - \lambda^{-n}) - \omega^*G(x_n) + x_n[v_{n+1} - v_n] + [x_{-n}^* + \eta_n][v_0 - v_n]
+        \end{equation*}
+    \item Instantaneous operating profits: $(1 - \lambda^{-n})$.
+    \item R\&D costs: $\omega^*(t)G(x_n(t))$.
+    \item With probability $x_n(t)$ you innovate.
+    \item With probability $x_{-n}^*(t) + \eta_n$ he innovates or your patent expires.
+  \end{itemize}
+\end{frame}
 
-  \begin{align*}
-    rV_n(t) - \dot{V_n}(t) = &[\Pi_n^*(t) - w^*(t)G(x_n(t))] + x_n(t)[V_{n+1}(t) - V_n(t)] \\
-                             &+ (x_{-n}^*(t) + \eta_n)[V_0(t) - V_n(t)]
+\begin{frame}[t]\frametitle{Firm's Value Function} 
+  \begin{itemize}
+    \item Tied firms value function:
+      \begin{equation*} \label{eq:rvf_tied}
+        \rho v_0 = \max_{x_0 \geq 0} -\omega^*G(x_{0} + x_{0}[v_1 - v_0] + x_0^*[v_{1} - v_0]
+      \end{equation*}
+
+    \item Follower's value function:
+      \begin{equation*} \label{eq:rvf_follower}
+        \rho v_{-n} \max_{x_-n \geq 0} -\omega^*G(x_{-n} + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Optimization} 
+  In equilibrium, R\&D poilcies must follow:
+  \begin{align*} \label{eq:ss_rd_policies}
+    x_n^*    &= max \big\{G'^{-1}\frac{[v_{n+1} - v_n]}{\omega^*}   ,0\}\\
+    x_{-n}^* &= max \big\{G'^{-1}\frac{[v_0  - v_{-n}]}{\omega^*}   ,0\}\\
+    x_0^*    &= max \big\{G'^{-1}\frac{[v_1     - v_0]}{\omega^*}   ,0\}
   \end{align*}
 \end{frame}
 
