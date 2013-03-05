@@ -147,15 +147,14 @@
 \begin{frame}[t]\frametitle{Patent Policy}
   \begin{itemize}
     \item Patents expire at Poisson rate: $\eta_{n_j}(t)$
-    \item Preserves stationarity of value function.
+    \item Preserves stationarity of the value functions.
     \item Law of motion for technology gap in industry $j$:
       \begin{equation*} \label{eq:tech_law_of_motion}
         \eta_j(t + \Delta t) =
         \begin{cases}
           \eta_j(t) + 1 & \textrm{prob } x_i(j,t)\Delta t + o(\Delta t)\\
           0 & \textrm{prob } x_{-i}(j,t)\Delta t + \eta_{n_{j(t)}}\Delta t + o(\Delta t) \\
-          \eta_j(t) & \textrm{prob } 1 - x_i(j,t)\Delta t \ldots\\
-            & \ \ \ \ \ + x_{-i}(j,t)\Delta t + \eta_{n_{j(t)}}\Delta t - o(\Delta t)
+          \eta_j(t) & \textrm{with the remainder} 
         \end{cases}
       \end{equation*}
   \end{itemize}
@@ -181,7 +180,7 @@
     \item Combine demand for intermediates: $y(j, t) = q_i(j, t)l_i(j, t)$, and $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ to get
 
       \begin{equation}
-        l_n(t) = \frac{\lambda{-n}Y(t)}{w(t)}
+        l_n(t) = \frac{\lambda^{-n}Y(t)}{w(t)}
       \end{equation}
     and so
       \begin{equation} \label{eq:labor_clearing}
