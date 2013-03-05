@@ -39,17 +39,15 @@ t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
 
 
 ## Counts by year
-def by_year(df, year_col='appyear', adj=False):
+def by_year(df, year_col='appyear', adj=False, style='k-', ax=None):
     """
     Plots the number of patents granted by year.
     year_col can be appyear or gyear (applied vs. granted).
     """
-    if adj and year_col == 'appyear':
-        print("You really shouldn't adjust when using application year.")
-    elif adj:
+    if adj:
         gr = df.groupby(df[year_col])
         # the .mean() of hjtwt does nothing.  Should all be the same within a year
-        fig = (gr.count()['patent'] * gr.mean()['hjtwt']).plot(rot=45)
+        fig = (gr.count()['patent'] * gr.mean()['hjtwt']).plot(rot=45, style=style)
         fig.set_xlabel('Year')
         fig.set_ylabel('Patents')
     else:
@@ -93,10 +91,7 @@ def year_and_country(df, ind=None, year_col='appyear', adj=False):
         idx = _get_ind(df.groupby('country')['patent'].count(), n=ind)
     else:
         idx = ind
-    if adj and year_col == 'appyear':
-        raise ValueError('May not want to mix appyear and adjustment')
-        pass
-    elif adj:
+    if adj:
         gr = df.groupby(['country', year_col])
         by_ctry_time = gr['patent'].count() * gr['hjtwt'].mean()
     else:
@@ -110,8 +105,13 @@ def year_and_country(df, ind=None, year_col='appyear', adj=False):
     ax = fig.axes
     return fig, ax
 
-fig1 = plt.figure()
-fig1, ax1 = by_year(df, year_col='gyear', adj=True)
+# By year, adjusted and unadjusted
+
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+fig1, ax1 = by_year(df, adj=True)
+ax1_2 = fig.add_subplot(111)
+fig1, ax1_2 = by_year(df)
 ax1.set_xlim(1970.)
 
 fig2 = plt.figure()
@@ -119,7 +119,7 @@ fig2, ax2, idx = by_country(df)
 
 
 fig3 = plt.figure()
-fig3, ax3 = year_and_country(df, ind=idx, year_col='gyear', adj=True)
+fig3, ax3 = year_and_country(df, ind=idx, adj=True)
 ax3.set_xlim(1970)
 
 fig4 = plt.figure()
