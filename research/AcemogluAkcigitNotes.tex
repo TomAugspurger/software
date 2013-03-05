@@ -157,6 +157,12 @@
     &= rV_n(t) - \dot{V_n}(t)
   \end{align}
 
+Just dumping this here. Eq (27).
+      \begin{align*}
+        rV_n(t) - \dot{V_n}(t) = &[\Pi_n^*(t) - w^*(t)G(x_n(t))] + x_n(t)[V_{n+1}(t) - V_n(t)] \\
+                                 &+ (x_{-n}^*(t) + \eta_n)[V_0(t) - V_n(t)]
+      \end{align*}
+
   Here we have the central optimization problems.
 
   Leaders:
@@ -174,14 +180,14 @@
   and followers:
 
   \begin{equation} \label{eq:rvf_follower}
-    \rho v_{n-1} \max_{x_n \geq 0} -\omega^*G(x_{-n} + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
+    \rho v_{-n} \max_{x_n \geq 0} -\omega^*G(x_{-n} + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
     \end{equation}
 
   Whose solutions satisfy:
 
   \begin{align} \label{eq:ss_rd_policies}
-    x_n^*    &= max \big\{G'^{-1}\frac{[v_{n+1} - v_n]}{\omega^*}   ,0\}  
-    x_{-n}^* &= max \big\{G'^{-1}\frac{[v_0  - v_{-n}]}{\omega^*}   ,0\}
+    x_n^*    &= max \big\{G'^{-1}\frac{[v_{n+1} - v_n]}{\omega^*}   ,0\}\\ 
+    x_{-n}^* &= max \big\{G'^{-1}\frac{[v_0  - v_{-n}]}{\omega^*}   ,0\}\\
     x_0^*    &= max \big\{G'^{-1}\frac{[v_1     - v_0]}{\omega^*}   ,0\}
   \end{align}
   
