@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{bm}
 \setbeamercovered{transparent}
+\graphicspath{{../resources/}}
 
 \title{Slides for Acemoglue Akcigit (2012)}
 \author{Caleb Floyd and Tom Augspurger}
@@ -13,8 +14,8 @@
 
 \frame{\titlepage}
 
-\section[Outline]{}
-\frame{\tableofcontents}
+% \section[Outline]{}
+% \frame{\tableofcontents}
 
 % Start with general intro to paper
 % Then apply to software?
@@ -25,7 +26,6 @@
 % 2. What was the state of knowledge before this paper?
 % 3. How does this paper answer the question differently?
 % 4. What are the main findings?
-
 
 \section{Introduction}
 \label{sec:introduction}
@@ -101,7 +101,7 @@
 
 \begin{frame}[t]\frametitle{Technology-Intermediate Good} 
   \begin{itemize}
-    \item<+-> $i$ denotes the firm.  Each industry $\in [0, 1]$ has two firms competing.
+    \item<+-> $i$ denotes the firm.  Each industry $j \in [0, 1]$ has two firms competing.
 
     \item<+-> Intermediate goods produced according to:
       \begin{equation*} \label{eq:intermediate_production}
@@ -185,7 +185,7 @@
       \end{equation}
     and so
       \begin{equation} \label{eq:labor_clearing}
-        1 \geq \sum_0^{\infty} \mu_n(t) \Big[\frac{1}{\omega(t)\lambda^n} + G(x_n(t))    + G(x_{-n}(t))\Big]
+        1 \geq \sum_{n=0}^{\infty} \mu_n(t) \Big[\frac{1}{\omega(t)\lambda^n} + G(x_n(t))    + G(x_{-n}(t))\Big]
       \end{equation}
       where $\omega(t)$ is labor's share of income.
 
@@ -201,7 +201,7 @@
       \end{equation*}
     \item<+-> As a ``normalized''value function ($v_n(t) = V_n(t) / Y(t)$):
       \begin{equation*} \label{eq:rvf_leader}  % rvf: recursive value function
-          pv_n = \max_{x_n \geq 0} (1 - \lambda^{-n}) - \omega^*G(x_n) + x_n[v_{n+1} - v_n] + [x_{-n}^* + \eta_n][v_0 - v_n]
+          pv_n = \max_{x_n \geq 0}\ \ (1 - \lambda^{-n}) - \omega^*G(x_n) + x_n[v_{n+1} - v_n] + [x_{-n}^* + \eta_n][v_0 - v_n]
         \end{equation*}
     \item<+-> Instantaneous operating profits: $(1 - \lambda^{-n})$.
     \item<+-> R\&D costs: $\omega^*(t)G(x_n(t))$.
@@ -214,7 +214,7 @@
   \begin{itemize}
     \item<+-> Tied firms value function:
       \begin{equation*} \label{eq:rvf_tied}
-        \rho v_0 = \max_{x_0 \geq 0} -\omega^*G(x_{0} + x_{0}[v_1 - v_0] + x_0^*[v_{1} - v_0]
+        \rho v_0 = \max_{x_0 \geq 0} -\omega^*G(x_{0}) + x_{0}[v_1 - v_0] + x_0^*[v_{1} - v_0]
       \end{equation*}
 
     \item<+-> Follower's value function:
@@ -231,18 +231,73 @@
     x_{-n}^* &= max \big\{G'^{-1}\frac{[v_0  - v_{-n}]}{\omega^*}   ,0\}\\
     x_0^*    &= max \big\{G'^{-1}\frac{[v_1     - v_0]}{\omega^*}   ,0\}
   \end{align*}
+
+  Relationship between $v_n$ and $x_n$. Say patent protection weakens:
+  \begin{itemize}
+    \item<+-> Disincentive Effect: $\downarrow v_{n+1} \Rightarrow \downarrow v_{n+1} - v_n \Rightarrow \downarrow x_n^*$.
+    \item<+-> Incentive Effect: $\downarrow v_{n+1} \Rightarrow \uparrow v_{n+2} - v_{n+1} \Rightarrow \uparrow x_{n+1}^*$.
+    \item<+-> Composition Effect: $x_n$ is decreasing in $n$. More firms in close competition.
+    \item<+-> Level Effect: Reduce prices and markups.  Less duplicative R\&D.
+  \end{itemize}
 \end{frame}
 
-\subsection{Characterization}
-\label{sub:characterization}
+\section{Results}
+\label{sec:results}
+\begin{frame}[t]\frametitle{Uniform Policy} 
+Problem is identical for all followers.
+
+Given some assumptions (positive R\&D, non-zero profits) \ldots
+\begin{itemize}
+  \item<+-> $v_{-1} \leq v_0$; $\{v_n\}_{n=0}^{\infty}$ is bounded and strictly increasing.
+  \item<+-> $x_0^* > x_1^*, x_0^* \geq x_{-1}^*$, and $x_{n+1}^* \leq x_n^*\ \forall n \in \mathbb{N}$.
+\end{itemize}
+\end{frame}
 
 \section{Optimal IPR}
 \label{sec:optimal_ipr}
+\subsection{Benchmark: Full IPR}
+\label{sub:benchmark_full_ipr}
+\begin{frame}[t]\frametitle{Optimal Uniform IPR} 
+  \begin{itemize}
+    \item<+-> Turns out that if $\eta_n = \eta \ \forall n$, $\eta^* = 0$ (Patents never expire).
+    \item<+-> Positive composition effect (more firms in close competition) overwhelmed by negative disincentive effect.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Optimal State-Dependent IPR} 
+  \begin{itemize}
+    \item<+-> Growth rate increases from 1.86\% to 2.04\%.
+    \item<+-> Optimal patent length is increasing in technology gap. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Full IPR} 
+  \begin{center}
+    \includegraphics[scale=.31]{full_ipr_value.png}
+    \label{fig:full_ipr}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Full IPR} 
+  \begin{center}
+    \includegraphics[scale=.28]{full_ipr_rnd.png}
+    \label{fig:full_ipr}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Full IPR} 
+  \begin{center}
+    \includegraphics[scale=.28]{full_ipr_distbn.png}
+    \label{fig:full_ipr}
+  \end{center}
+\end{frame}
 
 
 \section{Software}
 \label{sec:software}
 
+\section{Summary}
+\label{sec:summary}
 
 
 \end{document}
