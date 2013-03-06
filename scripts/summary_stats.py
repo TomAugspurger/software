@@ -10,9 +10,10 @@ from __future__ import division
 
 import numpy as np
 import pandas as pd
+from pandas.io.data import DataReader
 import matplotlib.pyplot as plt
 from patent_lookup import Lookup
-
+http://research.stlouisfed.org/fred2/series/CNP16OV?cid=104
 # Change path to local version.
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
@@ -37,7 +38,9 @@ Some companies of note:
 """
 cat = df['subcat']
 t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
-
+# To adjust for population
+popn = DataReader('CNP16OV', data_source='fred', start='1970')
+popn.resample('A')
 
 ## Counts by year
 def by_year(df, year_col='appyear', adj=False, style='k-', ax=None):
