@@ -149,7 +149,9 @@ t_idx = _get_ind(t_by_ctry)
 
 comb = pd.DataFrame([by_ctry[idx], t_by_ctry[t_idx]]).T
 comb.columns = ['All', 'Tech']
-# Think about dropping NA
+comb.ix['CH']['Tech'] = t.groupby('country')['patent'].count().ix['CH']
+comb.ix['NL']['All'] = df.groupby('country')['patent'].count().ix['NL']
+
 ax = comb.plot(kind='barh', stacked=True)
 ax.set_xlabel('Patents Granted')
 plt.savefig('../resources/by_country.png', dpi=100)
