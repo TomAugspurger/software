@@ -47,16 +47,19 @@ def by_year(df, year_col='appyear', adj=False, style='k-', ax=None):
     """
     Plots the number of patents granted by year.
     year_col can be appyear or gyear (applied vs. granted).
+
+    hjtwt is an adjustment for **citations** not for applications or grants.
     """
+    if adj and year_col != 'allcites':
+        raise ValueError('Only use adjustment with cites.')
     if adj:
         gr = df.groupby(df[year_col])
         # the .mean() of hjtwt does nothing.  Should all be the same within a year
-        fig = np.log((gr.count()['patent'] * gr.mean()['hjtwt'])).plot(
+        fig = (gr.count()['patent'] * gr.mean()['hjtwt']).plot(
             rot=45, style=style, ax=ax)
         fig.set_xlabel('Year')
         fig.set_ylabel('Patents')
     else:
-        gr = df.groupby(df[year_col])
         gr = df.groupby(df[year_col])
         fig = gr['patent'].count().plot(rot=45, style=style, ax=ax)
         fig.set_xlabel('Year')
@@ -113,32 +116,22 @@ def year_and_country(df, ind=None, year_col='appyear', adj=False):
 # By application year, adjusted and unadjusted
 
 fig = plt.figure()
-ax1 = fig.add_subplot(211)
-fig1, ax1 = by_year(df, adj=True, ax=ax1)
-ax1_2 = fig.add_subplot(212)
-fig1, ax1_2 = by_year(df, ax=ax1_2)
-ax1.set_title('Adjusted for Truncation')
-ax1_2.set_title('Unadjusted')
-axes_ = [ax1, ax1_2]
-for ax in axes_:
-    ax.set_xlim(1970, 2010)
-    ax.set_yscale('log')
+ax1 = fig.add_subplot(111)
+fig1, ax1 = by_year(df, ax=ax1)
+ax1.set_title('Patents by Application Year')
+ax1.set_xlim(1970, 2010)
+ax1.set_yscale('log')
 fig.tight_layout()
 plt.draw()
 plt.savefig('../resources/application_year.png', dpi=300)
 
 # By grant year, adjusted and unadjusted
 fig = plt.figure()
-ax1 = fig.add_subplot(211)
-fig1, ax1 = by_year(df, adj=True, ax=ax1, year_col='gyear')
-ax1_2 = fig.add_subplot(212)
-fig1, ax1_2 = by_year(df, ax=ax1_2, year_col='gyear')
-ax1.set_title('Adjusted for Truncation')
-ax1_2.set_title('Unadjusted')
-axes_ = [ax1, ax1_2]
-for ax in axes_:
-    ax.set_xlim(1970, 2010)
-    ax.set_yscale('log')
+ax1 = fig.add_subplot(111)
+fig1, ax1 = by_year(df, ax=ax1, year_col='gyear')
+ax1.set_title('Patents by Grant Year')
+ax1.set_xlim(1970, 2010)
+ax1.set_yscale('log')
 fig.tight_layout()
 plt.draw()
 plt.savefig('../resources/grant_year.png', dpi=300)
