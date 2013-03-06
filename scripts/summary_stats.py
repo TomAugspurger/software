@@ -13,7 +13,7 @@ import pandas as pd
 from pandas.io.data import DataReader
 import matplotlib.pyplot as plt
 from patent_lookup import Lookup
-http://research.stlouisfed.org/fred2/series/CNP16OV?cid=104
+
 # Change path to local version.
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
@@ -125,7 +125,7 @@ for ax in axes_:
     ax.set_yscale('log')
 fig.tight_layout()
 plt.draw()
-plt.savefig('../resources/application_year.png', dpi=100)
+plt.savefig('../resources/application_year.png', dpi=300)
 
 # By grant year, adjusted and unadjusted
 fig = plt.figure()
@@ -141,7 +141,7 @@ for ax in axes_:
     ax.set_yscale('log')
 fig.tight_layout()
 plt.draw()
-plt.savefig('../resources/grant_year.png', dpi=100)
+plt.savefig('../resources/grant_year.png', dpi=300)
 
 # All and tech by country:
 # Maybe limit to 90's on
@@ -157,11 +157,11 @@ comb.ix['NL']['All'] = df.groupby('country')['patent'].count().ix['NL']
 
 ax = comb.plot(kind='barh', stacked=True)
 ax.set_xlabel('Patents Granted')
-plt.savefig('../resources/by_country.png', dpi=100)
+plt.savefig('../resources/by_country.png', dpi=300)
 normed = comb.div(comb.sum(1), axis=0)
 ax2 = normed.plot(kind='barh', stacked=True)
 ax2.set_xlabel('Proportion of Tech Patents')
-plt.savefig('../resources/by_country_normalized.png', dpi=100)
+plt.savefig('../resources/by_country_normalized.png', dpi=300)
 
 fig3 = plt.figure()
 fig3, ax3 = year_and_country(df, ind=idx, adj=True)
