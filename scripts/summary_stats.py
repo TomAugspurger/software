@@ -141,6 +141,7 @@ plt.draw()
 plt.savefig('../resources/grant_year.png', dpi=100)
 
 # All and tech by country:
+# Maybe limit to 90's on
 by_ctry = df.groupby('country')['patent'].count()
 t_by_ctry = t.groupby('country')['patent'].count()
 idx = _get_ind(by_ctry)
@@ -151,11 +152,11 @@ comb.columns = ['All', 'Tech']
 # Think about dropping NA
 ax = comb.plot(kind='barh', stacked=True)
 ax.set_xlabel('Patents Granted')
-plt.savefig('by_country.png', dpi=100)
+plt.savefig('../resources/by_country.png', dpi=100)
 normed = comb.div(comb.sum(1), axis=0)
 ax2 = normed.plot(kind='barh', stacked=True)
 ax2.set_xlabel('Proportion of Tech Patents')
-plt.savefig('by_country_normalized.png', dpi=100)
+plt.savefig('../resources/by_country_normalized.png', dpi=100)
 
 fig3 = plt.figure()
 fig3, ax3 = year_and_country(df, ind=idx, adj=True)
