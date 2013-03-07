@@ -206,10 +206,11 @@ http://pypi.python.org/pypi/GDAL/
 cats = ['icl', 'icl_class', 'iclnum', 'cat', 'cat_ocl', 'cclass', 'subcat', 'subcat_ocl', 'subclass', 'subclass1', 'subclass1_ocl', 'subclass_ocl', 'nclass', 'nclass_ocl']
 
 jcats = df[cats]
-gr = df[['patent']].groupby((jcats['nclass'], df['appyear']))
-
-gr = df.groupby('state')
-cts = gr['patent'].count()
+gr = df[['patent']].groupby((jcats['cat'], df['appyear']))
+by_cat_ts = gr.count().unstack(level='cat').ix[1970:2002]
+plt.figure()
+ax = by_cat_ts.plot()
+plt.savefig('../resources/by_cat_year.png')
 
 
 ### Really should break this into multiple files:
