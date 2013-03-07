@@ -1,3 +1,8 @@
+from __future__ import division
+
+import matplotlib
+
+matplotlib.use("AGG")
 """
 Files available from:
 https://sites.google.com/site/patentdataproject/Home/downloads
@@ -6,18 +11,17 @@ Directly:
 http://www.nber.org/~jbessen/patassg.dat.zip
 http://www.nber.org/~jbessen/pat76_06_assgasc.zip
 """
-from __future__ import division
 
 import numpy as np
 import pandas as pd
 from pandas.io.data import DataReader
 import matplotlib.pyplot as plt
 from patent_lookup import Lookup
-
 # Change path to local version.
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
 df = s['utility']
+df = df[df.duplicated('patent')]  # Drop the dupes for multiple assignees.
 """
 Just tech industries (see classifications.py)
 {46: 'Semiconductor Devices', 21: 'Communications',
@@ -39,8 +43,11 @@ Some companies of note:
 cat = df['subcat']
 t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
 # To adjust for population
-popn = DataReader('CNP16OV', data_source='fred', start='1970')
-popn.resample('A')
+try:
+    popn = DataReader('CNP16OV', data_source='fred', start='1970')
+    popn = popn.resample('A')
+except IOError:
+    print('No Connection.')
 
 ## Counts by year
 def by_year(df, year_col='appyear', adj=False, style='k-', ax=None):
@@ -122,7 +129,6 @@ ax1.set_title('Patents by Application Year')
 ax1.set_xlim(1970, 2010)
 ax1.set_yscale('log')
 fig.tight_layout()
-plt.draw()
 plt.savefig('../resources/application_year.png', dpi=300)
 
 # By grant year, adjusted and unadjusted
@@ -133,7 +139,6 @@ ax1.set_title('Patents by Grant Year')
 ax1.set_xlim(1970, 2010)
 ax1.set_yscale('log')
 fig.tight_layout()
-plt.draw()
 plt.savefig('../resources/grant_year.png', dpi=300)
 
 # All and tech by country:
@@ -145,8 +150,14 @@ t_idx = _get_ind(t_by_ctry)
 
 comb = pd.DataFrame([by_ctry[idx], t_by_ctry[t_idx]]).T
 comb.columns = ['All', 'Tech']
-comb.ix['CH']['Tech'] = t.groupby('country')['patent'].count().ix['CH']
-comb.ix['NL']['All'] = df.groupby('country')['patent'].count().ix['NL']
+miss_all = comb[pd.isnull(comb['All'])].index
+
+for ctry in miss_all:
+    comb.ix[ctry]['All'] = df.groupby('country')['patent'].count().ix[ctry]
+
+miss_tech = comb[pd.isnull(comb['Tech'])].index
+for ctry in miss_tech:
+    comb.ix[ctry]['Tech'] = t.groupby('country')['patent'].count().ix[ctry]
 
 ax = comb.plot(kind='barh', stacked=True)
 ax.set_xlabel('Patents Granted')
