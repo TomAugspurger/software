@@ -57,7 +57,7 @@ inv_d = {d[k]: k for k in d}
 
 sub = df[df['uspto_assignee'].isin(d.values())]
 gr = sub.groupby(['uspto_assignee', 'appyear'])
-cts = gr['patent'].count().unstack(level='uspto_assignee')
+cts = gr['patent'].count().unstack(level='uspto_assignee').ix[1970:2002]
 cts = cts.rename(columns=inv_d)
 ax = cts.plot()
 plt.savefig('../resources/by_company.png')
