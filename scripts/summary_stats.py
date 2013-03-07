@@ -203,6 +203,10 @@ http://www.naturalearthdata.com
 http://pypi.python.org/pypi/GDAL/
 """
 
+cats = ['icl', 'icl_class', 'iclnum', 'cat', 'cat_ocl', 'cclass', 'subcat', 'subcat_ocl', 'subclass', 'subclass1', 'subclass1_ocl', 'subclass_ocl', 'nclass', 'nclass_ocl']
+
+jcats = df[cats]
+gr = df[['patent']].groupby((jcats['nclass'], df['appyear']))
 
 gr = df.groupby('state')
 cts = gr['patent'].count()
