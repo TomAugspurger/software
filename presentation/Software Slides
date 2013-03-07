@@ -1,0 +1,54 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+% \usepackage{beamerthemesplit} //Activate for custom appearance
+
+\title{Software Patents}
+\author{Caleb Floyd}
+\date{\today}
+
+\begin{document}
+\frame{\titlepage}
+
+\frame{
+\frametitle{Boldrin \& Levine}
+
+Boldrin \& Levine: alternate notation\\
+
+\begin{table}[ht]
+\caption{Alternate Notation}
+\centering
+\begin{tabular}{c c c}
+\hline\hline
+BL &  & New\\ [0.5ex] 
+\hline
+\delta & \longrightarrow & \beta  \\ 
+\beta & \longrightarrow & \lambda \\
+\zeta & \longrightarrow & $1 - \delta$ \\[1ex] 
+\hline
+\end{tabular}
+\label{table:altnot}
+\end{table}
+}
+
+\frame{
+\frametitle{Boldrin \& Levine: General Model Revisted}
+
+\begin{itemize}
+\item Distinguish between productive input and consumption good $\{k,c\}$
+
+\item $\displystyle\sum\limits_{t=0}^\infty\beta^t[u(c_t)-wL_t]$
+
+\begin{itemize}
+\item $\lambda k_t$ units available tomorrow without allocating additional resources for production
+\item $\lambda > 1$ gives us $24/7$ production
+\end{itemize}
+\end{itemize}
+}	
+	
+
+
+
+
+
+
+\end{document}
