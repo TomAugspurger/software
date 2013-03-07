@@ -230,16 +230,16 @@
 \begin{frame}[t]\frametitle{Optimization} 
   In equilibrium, R\&D poilcies must follow:
   \begin{align*} \label{eq:ss_rd_policies}
-    x_n^*    &= max \big\{G'^{-1}\frac{[v_{n+1} - v_n]}{\omega^*}   ,0\}\\
-    x_{-n}^* &= max \big\{G'^{-1}\frac{[v_0  - v_{-n}]}{\omega^*}   ,0\}\\
-    x_0^*    &= max \big\{G'^{-1}\frac{[v_1     - v_0]}{\omega^*}   ,0\}
+    x_n^*    &= max \big\{G'^{-1}\Bigg(\frac{[v_{n+1} - v_n]}{\omega^*}\Bigg)   ,0\}\\
+    x_{-n}^* &= max \big\{G'^{-1}\Bigg(\frac{[v_0  - v_{-n}]}{\omega^*}\Bigg)   ,0\}\\
+    x_0^*    &= max \big\{G'^{-1}\Bigg(\frac{[v_1     - v_0]}{\omega^*}\Bigg)   ,0\}
   \end{align*}
 
-  Relationship between $v_n$ and $x_n$. Say patent protection weakens:
+  Relationship between $v_n$ and $x_n$: Say patent protection weakens:
   \begin{itemize}
     \item<+-> Disincentive Effect: $\downarrow v_{n+1} \Rightarrow \downarrow v_{n+1} - v_n \Rightarrow \downarrow x_n^*$.
     \item<+-> Incentive Effect: $\downarrow v_{n+1} \Rightarrow \uparrow v_{n+2} - v_{n+1} \Rightarrow \uparrow x_{n+1}^*$.
-    \item<+-> Composition Effect: $x_n$ is decreasing in $n$. More firms in close competition.
+    \item<+-> Composition Effect: $x_n$ is decreasing in $n$. More firms in close competition. Higher aggregate R\&D.
     \item<+-> Level Effect: Reduce prices and markups.  Less duplicative R\&D.
   \end{itemize}
 \end{frame}
