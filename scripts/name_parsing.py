@@ -80,3 +80,6 @@ plt.savefig('../resources/att_all_total.png')
 ax5 = all_counts.ix[:2000].pct_change().plot(grid=True)
 plt.savefig('../resources/att_all_total_pc.png')
 ax6 = all_counts['all'].ix[1970:2000].pct_change().plot(grid=True, label=True)
+
+## Broader industry ##
+# Match Telecommunications, Telephonic communications; maybe others.
