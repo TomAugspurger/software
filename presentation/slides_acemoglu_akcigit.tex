@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{bm}
+\usefonttheme{serif}
 \setbeamercovered{transparent}
 \graphicspath{{../resources/}}
 
@@ -34,7 +35,7 @@
   \begin{itemize}
     \item<+-> Dynamic environment to study optimal \emph{state-dependent} Intellectual Property Rights policy.
     \item<+-> IPR depends on technology gap in an industry (state-dependence).
-    \item<+-> Tradeoff between monopolies and motivation for leaders.
+    \item<+-> Tradeoff between monopoly distortions and motivation for leaders.
   \end{itemize}
 \end{frame}
 
@@ -44,12 +45,12 @@
   \begin{itemize}
     \item<+-> \emph{Static} tradeoff between R\&D incentive and monopoly distortions.
     \item<+-> Mechanism design approach.  Menu of patents and fees.
-    \item<+-> Step-by-step innovation (Aghion, Harris and Vickers 1997) --- Higher growth from stiffer competition.
+    \item<+-> Step-by-step innovation (Aghion, Harris, and Vickers 1997) --- Higher growth from stiffer competition.
     \item<+-> Tournaments / Races
     %\item<+-> Look for predecessors of state-dependent IPR.  They claim to ``explicitly introduce'' it.
     %\item<+-> Look for predecessor of dynamic effects, not just static R\&D incentives / monopoly rents tradeoff.
     %\item<+-> Par. 3 pg. 5 notes some mechanism-design papers that might be worth skimming for previous research.
-  \end{itemize}  
+  \end{itemize}
 \end{frame}
 
 \section{Contributions}
@@ -87,11 +88,11 @@
     \item<+-> Output of final good: $Y(t) = C(t)$.
     
     \item<+-> Production of $Y(t)$:
-      \begin{equation} \label{eq:tech_output}
+      \begin{equation*} \label{eq:tech_output}
         % Why log output? Cobb-Douglas since log of products is sum
         % i.e. the integral?  CD need not be HOD 1.
         \ln Y(t) = \int_{0}^{1} \ln y(j, t) d\,j 
-      \end{equation}
+      \end{equation*}
       where $y(j, t)$ is the output of intermediate good $j$.
     
     %% Is this the right place for EE? 
@@ -124,21 +125,21 @@
     where $-i$ denotes the follower (less advanced technology).
     \item<+-> Cobb-Douglas production of final good implies:
     %  TODO: Verify this.
-      \begin{equation}
+      \begin{equation*}
         y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)
-      \end{equation}
+      \end{equation*}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Technology-Innovation} 
   \begin{itemize}
     \item<+-> Innovation follows Poisson process with flow rate:
-      \begin{equation} \label{eq:tech_rd_technology}
+      \begin{equation*} \label{eq:tech_rd_technology}
         x_i(j, t) = F(h_i(j, t))
-      \end{equation}
+      \end{equation*}
       where $h_i(j, t)$ is the number of workers employed in R\&D.
       Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
-    \item<+-> Successful innovation by the leader increments technology by factor $\lambda$.
+    \item<+-> Successful innovation \textbf{by the leader} increments technology by factor $\lambda > 1$.
     \item<+-> If the follower innovates, he catches up with the leader (Not patent infringing).
     \item<+-> Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the rung for firm $i$ in industry $j$.
     \item<+-> Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
@@ -183,13 +184,13 @@
     \item<+-> Three sources of demand: Production of intermediaries, and R\&D by each firm.
     \item<+-> Combine demand for intermediates: $y(j, t) = q_i(j, t)l_i(j, t)$, and $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ to get
 
-      \begin{equation}
+      \begin{equation*}
         l_n(t) = \frac{\lambda^{-n}Y(t)}{w(t)}
-      \end{equation}
+      \end{equation*}
     and so
-      \begin{equation} \label{eq:labor_clearing}
+      \begin{equation*} \label{eq:labor_clearing}
         1 \geq \sum_{n=0}^{\infty} \mu_n(t) \Big[\frac{1}{\omega(t)\lambda^n} + G(x_n(t))    + G(x_{-n}(t))\Big]
-      \end{equation}
+      \end{equation*}
       where $\omega(t)$ is labor's share of income.
 
   \end{itemize}
@@ -222,7 +223,7 @@
 
     \item<+-> Follower's value function:
       \begin{equation*} \label{eq:rvf_follower}
-        \rho v_{-n} \max_{x_-n \geq 0} -\omega^*G(x_{-n} + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
+        \rho v_{-n} \max_{x_{-n} \geq 0} -\omega^*G(x_{-n}) + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
       \end{equation*}
   \end{itemize}
 \end{frame}
@@ -279,21 +280,21 @@ Given some assumptions (positive R\&D, non-zero profits) \ldots
 \begin{frame}[t]\frametitle{Full IPR} 
   \begin{center}
     \includegraphics[scale=.31]{full_ipr_value.png}
-    \label{fig:full_ipr}
+    \label{fig:full_ipr_value}
   \end{center}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Full IPR} 
   \begin{center}
     \includegraphics[scale=.28]{full_ipr_rnd.png}
-    \label{fig:full_ipr}
+    \label{fig:full_ipr_rnd}
   \end{center}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Full IPR} 
   \begin{center}
     \includegraphics[scale=.28]{full_ipr_distbn.png}
-    \label{fig:full_ipr}
+    \label{fig:full_ipr_distbn}
   \end{center}
 \end{frame}
 
