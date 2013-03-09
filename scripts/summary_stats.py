@@ -126,7 +126,7 @@ fig = plt.figure()
 ax1 = fig.add_subplot(111)
 fig1, ax1 = by_year(df, ax=ax1)
 ax1.set_title('Patents by Application Year')
-ax1.set_xlim(1970, 2002)
+ax1.set_xlim(1975, 2002)
 # ax1.set_yscale('log')
 # fig.tight_layout()
 plt.savefig('../resources/application_year.png', dpi=300)
@@ -136,7 +136,7 @@ fig = plt.figure()
 ax1 = fig.add_subplot(111)
 fig1, ax1 = by_year(df, ax=ax1, year_col='gyear')
 ax1.set_title('Patents by Grant Year')
-ax1.set_xlim(1970, 2002)
+ax1.set_xlim(1975, 2002)
 # ax1.set_yscale('log')
 # fig.tight_layout()
 plt.savefig('../resources/grant_year.png', dpi=300)
@@ -170,11 +170,11 @@ plt.savefig('../resources/by_country_normalized.png', dpi=300)
 
 fig3 = plt.figure()
 fig3, ax3 = year_and_country(df, ind=idx, adj=True)
-ax3.set_xlim(1970, 2002)
+ax3.set_xlim(1975, 2002)
 
 fig4 = plt.figure()
 fig4, ax4 = by_year(t)
-ax4.set_xlim(1970, 2002)
+ax4.set_xlim(1975, 2002)
 
 
 fig6 = plt.figure()
@@ -219,7 +219,7 @@ cats = ['icl', 'icl_class', 'iclnum', 'cat', 'cat_ocl', 'cclass', 'subcat', 'sub
 
 jcats = df[cats]
 gr = df[['patent']].groupby((jcats['cat'], df['appyear']))
-by_cat_ts = gr.count().unstack(level='cat').ix[1970:2002]
+by_cat_ts = gr.count().unstack(level='cat').ix[1975:2002]
 plt.figure()
 ax = by_cat_ts.plot()
 plt.savefig('../resources/by_cat_year.png')
