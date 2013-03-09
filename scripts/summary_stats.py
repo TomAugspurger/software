@@ -21,7 +21,7 @@ from patent_lookup import Lookup
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
 df = s['utility']
-df = df[df.duplicated('patent')]  # Drop the dupes for multiple assignees.
+# df = df[df.duplicated('patent')]  # Drop the dupes for multiple assignees.
 """
 Just tech industries (see classifications.py)
 {46: 'Semiconductor Devices', 21: 'Communications',
@@ -162,6 +162,7 @@ for ctry in miss_tech:
 # This would be fun to animate. Composition may change though.  Needn't though.
 ax = comb.plot(kind='barh', stacked=True)
 ax.set_xlabel('Patents Granted')
+ax.set_xticks([200000, 600000, 1000000, 1400000, 1800000])
 plt.savefig('../resources/by_country.png', dpi=300)
 normed = comb.div(comb.sum(1), axis=0)
 ax2 = normed.plot(kind='barh', stacked=True)
