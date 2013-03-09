@@ -169,13 +169,16 @@ ax2.set_xlabel('Proportion of Tech Patents')
 plt.savefig('../resources/by_country_normalized.png', dpi=300)
 
 fig3 = plt.figure()
+ax3 = fig3.add_subplot(111)
 fig3, ax3 = year_and_country(df, ind=idx, adj=True)
 ax3.set_xlim(1975, 2002)
 
 fig4 = plt.figure()
-fig4, ax4 = by_year(t)
+ax4 = fig4.add_subplot(111)
+fig4, ax4 = by_year(t, ax=ax4)
+ax4.set_title('Tech Patents by Application Year')
 ax4.set_xlim(1975, 2002)
-
+plt.savefig('../resources/tech_patents_by_year.png', dpi=300)
 
 fig6 = plt.figure()
 fig6, ax6 = year_and_country(t)
