@@ -2,7 +2,8 @@
 %\usetheme{Madrid}
 %\usepackage[pdftex]{graphicx}
 %\usepackage{sidecap}
-\usepackage{wrapfig}
+\usepackage{color}
+\graphicspath{{../resources/}}
 
 \title{Software Patents}
 \author{Tom Augspurger \& Caleb Floyd}
@@ -124,12 +125,54 @@
 	\item The problem restated:\\
 	\begin{centering}
 	  $\nu(k_0)=
-		\underset{\{k_t\}_{t=1}^\infty}{max}\displystyle\sum\limits_{t=0}^\infty\beta		 ^tV(k_t,k_{t+1} - \lambda k_t)$\\
+		\underset{\{k_t\}_{t=1}^\infty}{max}\displystyle\sum\limits_{t=0}^\infty\bet         a^tV(k_t,k_{t+1} - \lambda k_t)$\\
 	    \hspace{13mm}
 		s.t. $\lambda k_t + \overline{x}(k_t) \ge k_{t+1} \ge \lambda k_t$
 	\end{centering}
 	\item As before, $q_0 = \nu ' (k_0) > 0$ yields positive competitive rents
   \end{itemize}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Open source innovation and selling expertise}
+	\begin{itemize}
+		\item Additional productive capacity only requires labor to be produced: $x_t = G(L_t)$ (labor is chosen according to $L_t = g(x_t)$)
+		\item Consumption (services) is produced from productive capacity $c_t = f(h_t)$
+		\item The innovator comes into the market with productive capacity of $h_0$
+		\begin{itemize}
+			\item As soon as this occurs, others can begin accumulating productive capacity (expertise in the software)
+			\item $h_{t+1} = x_t + (1-\delta)*h_t$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Consumer utility same as the general case
+		\item Planners Problem:\\ 
+		\begin{centering}
+			$\nu(h_t) = \underset{x_t \ge 0}{max} \{u(c_t) - wg(x_t) + \beta\nu(h_{t+1})\}$
+		\end{centering}
+		\item First order condition:\\
+		\begin{centering}
+			$wg'(x_t) = \beta\nu'(h_{t+1})$
+		\end{centering}
+		\item This can be decentralized with prices ${p_t, q_t}$ for services and capital
+		\begin{itemize}
+		\item $p_t = u'(c_t)$
+		\item $q_t = \nu'(h_t) = u'(c_t)f'(h_t) + \beta(1-\delta)\nu'(h_{t+1})$	
+		\end{itemize} 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Rearranging we get:\\
+		$q_0 = \displystyle\sum\limits_{t=0}^\infty(\beta(1-\delta))^tu'(c_t)f'(c_t)$
+		 \item The open source innovation is viable as long as $q_0k_0 > C$
+		 \item Perhaps more elucidating:\\
+		 $q_0 = \underbrace{u'(c_0)f'(h_0)}_{\text{\color{red}first mover advantage}} + \underbrace{(1-\delta)wg'(x_0)}_{\text{\color{red}cost of imitation}}$  
+	\end{itemize}
 \end{frame}
 
 
