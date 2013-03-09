@@ -33,9 +33,11 @@
 
 \begin{frame}[t]\frametitle{Intro}
   \begin{itemize}
-    \item<+-> Dynamic environment to study optimal \emph{state-dependent} Intellectual Property Rights policy.
+    \item<+-> Daron Acemogllu and Ufuk Akcigit (2012) - Intellectual Property Rights Policy, Competition And Innovation.
+    \item<+-> Optimal \emph{state-dependent} Intellectual Property Rights policy in a dynamic environment.
     \item<+-> IPR depends on technology gap in an industry (state-dependence).
-    \item<+-> Tradeoff between monopoly distortions and motivation for leaders.
+    \item<+-> Standard tradeoff between monopoly distortions and motivation.
+    \item<+-> Novel motivation for leaders.
   \end{itemize}
 \end{frame}
 
@@ -43,26 +45,25 @@
 \label{sec:literature_review}
 \begin{frame}[t]\frametitle{Previous Research} 
   \begin{itemize}
-    \item<+-> \emph{Static} tradeoff between R\&D incentive and monopoly distortions.
+    \item<+-> \emph{Static} tradeoff between R\&D incentive and monopoly distortions. Mixed conclusions.
     \item<+-> Mechanism design approach.  Menu of patents and fees.
     \item<+-> Step-by-step innovation (Aghion, Harris, and Vickers 1997) --- Higher growth from stiffer competition.
-    \item<+-> Tournaments / Races
     %\item<+-> Look for predecessors of state-dependent IPR.  They claim to ``explicitly introduce'' it.
     %\item<+-> Look for predecessor of dynamic effects, not just static R\&D incentives / monopoly rents tradeoff.
     %\item<+-> Par. 3 pg. 5 notes some mechanism-design papers that might be worth skimming for previous research.
   \end{itemize}
 \end{frame}
 
-\section{Contributions}
-\label{sec:contributions}
+% \section{Contributions}
+% \label{sec:contributions}
 
-\begin{frame}[t]\frametitle{New Contributions} 
-  \begin{itemize}
-    \item<+-> State-dependent IPR.
-    \item<+-> Slow catch-up, compulsory licensing %(check on this).
-    \item<+-> Full GE model % (probably done before, but first in the Aghion et. al line?)
-  \end{itemize}
-\end{frame}
+% \begin{frame}[t]\frametitle{New Contributions} 
+%   \begin{itemize}
+%     \item<+-> State-dependent IPR.
+%     \item<+-> Slow catch-up, compulsory licensing %(check on this).
+%     \item<+-> Full GE model % (probably done before, but first in the Aghion et. al line?)
+%   \end{itemize}
+% \end{frame}
 
 \section{Model}
 \label{sec:model}
@@ -71,13 +72,16 @@
 \label{sub:preferences}
 
 \begin{frame}[t]\frametitle{Consumers' Preferences} 
-  Single final good.  Continuum of 1 individuals.
-  \begin{equation*} \label{eq:pref}
-    \mathbb{E}_t \int_t^\infty exp(-\rho(s - t))\mathrm{ln}\,   C(s)ds
-  \end{equation*}
-  where $\rho$ is the discount factor.
-  
-  Also supply 1 unit of labor inelastically. 
+  \begin{itemize}
+    \item<+-> Single final good.  Continuum of 1 individuals.
+      \begin{equation*} \label{eq:pref}
+        \mathbb{E}_t \int_t^\infty exp(-\rho(s - t))\mathrm{ln}\,   C(s)ds
+      \end{equation*}
+      where $\rho$ is the discount factor.
+      
+  \item<+-> Also supply 1 unit of labor inelastically.
+  \item<+-> Also own balanced portfolio of intermediate goods producers.
+  \end{itemize}
 \end{frame}
 
 \subsection{Production}
@@ -93,10 +97,10 @@
         % i.e. the integral?  CD need not be HOD 1.
         \ln Y(t) = \int_{0}^{1} \ln y(j, t) d\,j 
       \end{equation*}
-      where $y(j, t)$ is the output of intermediate good $j$.
-    \item<+-> Perfect Substitutes.
+      where $y(j, t)$ is the quantity of intermediate good $j$ used.
+    \item<+-> Perfect substitutes between intermediate varieties.
     
-    %% Is this the right place for EE? 
+    %% Is this the right place for EE?
     % \item<+-> Euler Equation:
     %   \begin{equation*}
     %     g(t) \equiv \frac{\dot{C}(t)}{C(t)} = \frac{\dot{Y}(t)}{Y(t)} = r(t) - \rho
@@ -106,7 +110,7 @@
 
 \begin{frame}[t]\frametitle{Technology-Intermediate Good} 
   \begin{itemize}
-    \item<+-> $i$ denotes the firm.  Each industry $j \in [0, 1]$ has two firms competing.
+    \item<+-> Each industry $j \in [0, 1]$ has two firms competing. Firms denoted by $i$ (leader) and $-i$ (follower).
 
     \item<+-> Intermediate goods produced according to:
       \begin{equation*} \label{eq:intermediate_production}
@@ -163,6 +167,7 @@
           \eta_j(t) & \textrm{with the remainder} 
         \end{cases}
       \end{equation*}
+  \item<+-> Write the patent policy as $\bm{\eta} : \mathbb{N} \rightarrow \mathbb{R}$.
   \end{itemize}
 \end{frame}
 
@@ -174,11 +179,17 @@
 \subsection{Equilibrium}
 \label{sub:equilibrium}
 \begin{frame}[t]\frametitle{Equilibrium} 
+  \begin{itemize}
 
-  $\bm{\mu}(t) \equiv {\mu_n(t)}_{n=0}^\infty$ is a distribution of \emph{industries} over \emph{technology gaps}.
+  \item<+-> $\bm{\mu}(t) \equiv {\mu_n(t)}_{n=0}^\infty$ is a distribution of \emph{industries} over \emph{technology gaps}.
   
+  \item<+-> Define an \textsf{Allocation} as a sequence of decisions for leaders and followers, sequence of wage rates, and a sequence of distributions over gaps.
 
+  \item<+-> Define an \textsf{Equilibrium} as a sequence of decisions, wages, and output such that markets clear, firms' expected profits are maximized, and R\&D policies are best responses. 
+
+  \end{itemize}
 \end{frame}
+
 
 \begin{frame}[t]\frametitle{Labor Market} 
   \begin{itemize}
@@ -217,7 +228,7 @@
 
 \begin{frame}[t]\frametitle{Firm's Value Function} 
   \begin{itemize}
-    \item<+-> Tied firms value function:
+    \item<+-> Tied firm's value function:
       \begin{equation*} \label{eq:rvf_tied}
         \rho v_0 = \max_{x_0 \geq 0} -\omega^*G(x_{0}) + x_{0}[v_1 - v_0] + x_0^*[v_{1} - v_0]
       \end{equation*}
@@ -303,8 +314,11 @@ Given some assumptions (positive R\&D, non-zero profits) \ldots
 \section{Software}
 \label{sec:software}
 
-\section{Summary}
-\label{sec:summary}
-
+\section{Conclusion}
+\label{sec:conclusion}
+  \begin{itemize}
+    \item<+-> State-Dependent patent policy to motive all producers to innovate.
+    \item<+-> Found that stronger protection should be given to those further ahead.
+  \end{itemize}
 
 \end{document}
