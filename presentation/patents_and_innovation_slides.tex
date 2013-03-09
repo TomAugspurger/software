@@ -1,10 +1,16 @@
 \documentclass{beamer}
+\usetheme{Boadilla}
+\usecolortheme{seagull}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
+\setbeamercovered{transparent}
+\usefonttheme{serif}
+
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{bm}
-\usefonttheme{serif}
-\setbeamercovered{transparent}
+
 \graphicspath{{../resources/}}
 
 \title{Patents and Innovation in Software}
@@ -12,23 +18,33 @@
 \date{\today}
 \begin{document}
 
-\section{Introduction}
-\label{sec:introduction}
+\begin{frame}[t]\frametitle{Outline}
+    
+\begin{itemize}
+  \item Copyright Law and Patents.
+  \item Boldrin and Levine (2008.)
+  \item Acemoglu and Akcigit (2012.)
+\end{itemize}
+
+\end{frame}
+
+\section{Copyright Law and Patents}
+\label{sec:copyright_law_and_patents}
 
 \begin{frame}[t]
     \frametitle{Copyright Term Extension Act}
   \begin{itemize}
-    \item CTEA of 1998
+    \item<+-> CTEA of 1998
       \begin{itemize}
-        \item Created prior to 1978: 95 year protection
-        \item Created after 1978: lifetime of the author plus 70 years
-        \item Challenged on grounds of
+        \item<+-> Created prior to 1978: 95 year protection
+        \item<+-> Created after 1978: lifetime of the author plus 70 years
+        \item<+-> Challenged on grounds of
         \begin{itemize}
-            \item Copyright Clause -- ``limited Times''
-            \item The First Amendment
-            \item The public trust doctrine
+            \item<+-> Copyright Clause -- ``limited Times''
+            \item<+-> The First Amendment
+            \item<+-> The public trust doctrine
         \end{itemize}
-        \item Upheld in \emph{Eldred v. Ashcroft} by SCOTUS (January 15th, 2003)
+        \item<+-> Upheld in \emph{Eldred v. Ashcroft} by SCOTUS (January 15th, 2003)
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -36,10 +52,10 @@
 \begin{frame}[t]
  \frametitle{Diamond v. Diehr (1981)}
  \begin{itemize}
-     \item Prior to 1981 software was effectively not patentable 
-     \item Mathematical formulas in the abstract are not eligible for patent protection
-     \item However, a physical machine or process which makes use of a mathematical algorithm is different from an invention which claims the algorithm in the abstract
-     \item Hence software is deemed patentable as it's an implementation of an algorythm
+     \item<+-> Prior to 1981 software was effectively not patentable 
+     \item<+-> Mathematical formulas in the abstract are not eligible for patent protection
+     \item<+-> However, a physical machine or process which makes use of a mathematical algorithm is different from an invention which claims the algorithm in the abstract
+     \item<+-> Hence software is deemed patentable as it's an implementation of an algorythm
  \end{itemize}
 \end{frame}
 
@@ -60,20 +76,43 @@
 \end{frame}
 
 
-\begin{frame}[t]
-  \frametitle{Why does open source coexist?}
+\begin{frame}[t]\frametitle{Growth in Patent Applications} 
+
+  \begin{center}
+      \includegraphics[scale=.5]{grant_year.png}
+      \label{fig:grant_year}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Patents by Country} 
+
+\begin{center}
+  \includegraphics[scale=.5]{by_country.png}
+  \label{fig:by_country}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Patents by Country} 
+
+\begin{center}
+  \includegraphics[scale=.5]{by_country_normalized.png}
+  \label{fig:by_country_normalized}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Most Cited Patent} 
   \begin{itemize}
-    \item control over product performance
-    \item hobbyists/enthusiasts
-    \item display of skill/resume padding
-    \begin{itemize}
-        \item Hall et. al
-    \end{itemize}
-    \item competitive rents (Boldrin \& Levine)
-    \begin{itemize}
-        \item Which model version fits?
-        \item What can we say about the implications? 
-    \end{itemize}
+    \item<+-> February 2, 1988: Patent No. 4,723,129.
+    \item<+-> Bubble jet recording method and apparatus in which a heating element generates bubbles in a liquid flow path to project droplets.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{Most Cited Patent} 
+  \begin{itemize}
+    \item February 2, 1988: Patent No. 4,723,129.
+    \item Bubble jet recording method and apparatus in which a heating element generates bubbles in a liquid flow path to project droplets.
+    \item Canon Ink Jet printers.
   \end{itemize}
 \end{frame}
 
@@ -84,9 +123,28 @@
   \begin{quotation}
       ...only small rents can be obtained through the sale of copies. [Purchasers] also have a demand for services, ranging from support and consulting to customization. They naturally prefer to hire the creators of the programs who in the process of writing the software have developed specialized expertise that is not easily matched by imitators.
   \end{quotation}
-  - Boldrine \& Levine (2009)
+  - Boldrin \& Levine (2009)
 \end{frame}
 
+\begin{frame}[t]
+  \frametitle{Why does open source coexist?}
+  \begin{itemize}
+    \item<+-> Control over product performance.
+    \item<+-> Hobbyists and enthusiasts.
+    \item<+-> Display of skill or resume padding.
+    \begin{itemize}
+        \item<+-> Hall et. al
+    \end{itemize}
+    \item<+-> Competitive rents (Boldrin \& Levine).
+    \begin{itemize}
+        \item<+-> Which model version fits?
+        \item<+-> What can we say about the implications?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Boldrin and Levine (2002)}
+\label{sec:boldrin_and_levine_2002}
 
 \section{Acemoglu and Akcigit (2012)}
 \label{sec:acemoglu_and_akcigit_2012}
@@ -96,7 +154,7 @@
 
 \begin{frame}[t]\frametitle{Intro}
   \begin{itemize}
-    \item<+-> Daron Acemogllu and Ufuk Akcigit (2012) - Intellectual Property Rights Policy, Competition And Innovation.
+    \item<+-> Daron Acemoglu and Ufuk Akcigit (2012) - Intellectual Property Rights Policy, Competition And Innovation.
     \item<+-> Optimal \emph{state-dependent} Intellectual Property Rights policy in a dynamic environment.
     \item<+-> IPR depends on technology gap in an industry (state-dependence).
     \item<+-> Standard tradeoff between monopoly distortions and motivation.
