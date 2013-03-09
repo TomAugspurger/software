@@ -64,13 +64,13 @@ def by_year(df, year_col='appyear', adj=False, style='k-', ax=None):
         # the .mean() of hjtwt does nothing.  Should all be the same within a year
         fig = (gr.count()['patent'] * gr.mean()['hjtwt']).plot(
             rot=45, style=style, ax=ax)
-        fig.set_xlabel('Year')
-        fig.set_ylabel('Patents')
+        fig.set_xlabel('')
+        fig.set_ylabel('Number of Patents')
     else:
         gr = df.groupby(df[year_col])
-        fig = gr['patent'].count().plot(rot=45, style=style, ax=ax)
-        fig.set_xlabel('Year')
-        fig.set_ylabel('Patents')
+        fig = gr['patent'].count().plot(style=style, ax=ax)
+        fig.set_xlabel('')
+        fig.set_ylabel('Number of Patents')
     ax = fig.axes
     return fig, ax
 
@@ -150,8 +150,8 @@ t_idx = _get_ind(t_by_ctry)
 
 comb = pd.DataFrame([by_ctry[idx], t_by_ctry[t_idx]]).T
 comb.columns = ['All', 'Tech']
-miss_all = comb[pd.isnull(comb['All'])].index
 
+miss_all = comb[pd.isnull(comb['All'])].index
 for ctry in miss_all:
     comb.ix[ctry]['All'] = df.groupby('country')['patent'].count().ix[ctry]
 
@@ -159,6 +159,7 @@ miss_tech = comb[pd.isnull(comb['Tech'])].index
 for ctry in miss_tech:
     comb.ix[ctry]['Tech'] = t.groupby('country')['patent'].count().ix[ctry]
 
+# This would be fun to animate. Composition may change though.  Needn't though.
 ax = comb.plot(kind='barh', stacked=True)
 ax.set_xlabel('Patents Granted')
 plt.savefig('../resources/by_country.png', dpi=300)
