@@ -21,6 +21,10 @@ from patent_lookup import Lookup
 s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 
 df = s['utility']
+gdp = DataReader('GDPC1', data_source='fred',
+                 start='1975').resample('A').pct_change()
+
+
 # df = df[df.duplicated('patent')]  # Drop the dupes for multiple assignees.
 """
 Just tech industries (see classifications.py)
@@ -46,6 +50,8 @@ t = df[(cat == 22.0) | (cat == 24.0) | (cat == 25.0)]
 try:
     popn = DataReader('CNP16OV', data_source='fred', start='1970')
     popn = popn.resample('A')
+    gdp = DataReader('GDPC1', data_source='fred',
+                     start='1974').resample('A')
 except IOError:
     print('No Connection.')
 
