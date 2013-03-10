@@ -6,6 +6,7 @@
 \setbeamercovered{transparent}
 \usefonttheme{serif}
 
+\usepackage{color}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -145,6 +146,55 @@
 
 \section{Boldrin and Levine (2002)}
 \label{sec:boldrin_and_levine_2002}
+
+\begin{frame}
+  \frametitle{Boldrin \& Levine}
+  Boldrin \& Levine: alternate notation\\
+  \begin{table}[ht]
+    \caption{Alternate Notation}
+    \centering
+  \begin{tabular}{c c c}
+    \hline\hline
+      BL &  & New\\ [0.5ex] 
+    \hline
+    $\delta$ & $\longrightarrow$ & $\beta$  \\ 
+    $\beta$ & $\longrightarrow$ & $\lambda$ \\
+    $\zeta$ & $\longrightarrow$ & $1 - \delta$ \\[1ex] 
+    \hline
+   \end{tabular}
+   \label{table:altnot}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Boldrin \& Levine: General Model Revisited}
+  \begin{itemize}
+    \item<+-> Distinguish between productive input and consumption good: $\{k,c\}$
+    \item<+-> $c_t = F(k_t^c,l_t^c)$, $x_t = G(k_t^k,l_t^k)$
+    \item<+-> Agent solves $\sum_{t=0}^\infty\beta^t[u(c_t)-wL_t]$
+    \begin{itemize}
+      \item<+-> $\lambda k_t$ units available tomorrow without allocating resources for production: $k_{t+1} = \lambda k_t + x_t$
+      \item<+-> $\lambda > 1$ gives us the $24/7$ case
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  \begin{itemize}
+    \item<+-> Given $\{k_t, x_t, L_t\}$, the solution $c_t = T(k_t,x_t,L_t)$ traces a      production possibility frontier\\
+     graph here
+  \item<+-> $L_t$ solves $\underset{L_t}{max}$ $u[T(k_t,x_t,L_t)]-wL_t$
+  \item<+-> The problem restated:
+  \begin{align*}
+    &\nu(k_0)=
+    \max_{\{k_t\}_{t=1}^\infty} \sum_{t=0}^\infty\beta^tV(k_t,k_{t+1} - \lambda k_t)
+      \hspace{13mm}\\
+    &s.t. \ \ \ \ \ \ \lambda k_t + \overline{x}(k_t) \ge k_{t+1} \ge \lambda k_t
+  \end{align*}
+  \item<+-> As before, $q_0 = \nu ' (k_0) > 0$ yields positive competitive rents
+  \end{itemize} 
+\end{frame}
 
 \section{Acemoglu and Akcigit (2012)}
 \label{sec:acemoglu_and_akcigit_2012}
@@ -439,9 +489,12 @@ Given some assumptions (positive R\&D, non-zero profits) \ldots
 \end{frame}
 \subsection{Conclusion}
 \label{sub:conclusion}
+
+\begin{frame}[t]\frametitle{Summary}
   \begin{itemize}
     \item<+-> State-Dependent patent policy to motive all producers to innovate.
     \item<+-> Found that stronger protection should be given to those further ahead.
-  \end{itemize}
+  \end{itemize}  
+\end{frame}
 
 \end{document}
