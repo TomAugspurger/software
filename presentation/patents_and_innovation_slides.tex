@@ -18,6 +18,7 @@
 \author{Caleb Floyd and Tom Augspurger}
 \date{\today}
 \begin{document}
+\frame{\titlepage}
 
 \begin{frame}[t]\frametitle{Outline}
     
@@ -37,15 +38,15 @@
   \begin{itemize}
     \item<+-> CTEA of 1998
       \begin{itemize}
-        \item<+-> Created prior to 1978: 95 year protection
-        \item<+-> Created after 1978: lifetime of the author plus 70 years
-        \item<+-> Challenged on grounds of
+        \item<+-> Created prior to 1978: 95 year protection.
+        \item<+-> Created after 1978: lifetime of the author plus 70 years.
+        \item<+-> Challenged on grounds of:
         \begin{itemize}
-            \item<+-> Copyright Clause -- ``limited Times''
+            \item<+-> The Copyright Clause -- ``limited Times''
             \item<+-> The First Amendment
             \item<+-> The public trust doctrine
         \end{itemize}
-        \item<+-> Upheld in \emph{Eldred v. Ashcroft} by SCOTUS (January 15th, 2003)
+        \item<+-> Upheld in \emph{Eldred v. Ashcroft} by SCOTUS (January 15th, 2003).
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -53,10 +54,10 @@
 \begin{frame}[t]
  \frametitle{Diamond v. Diehr (1981)}
  \begin{itemize}
-     \item<+-> Prior to 1981 software was effectively not patentable 
-     \item<+-> Mathematical formulas in the abstract are not eligible for patent protection
-     \item<+-> However, a physical machine or process which makes use of a mathematical algorithm is different from an invention which claims the algorithm in the abstract
-     \item<+-> Hence software is deemed patentable as it's an implementation of an algorythm
+     \item<+-> Prior to 1981 software was effectively not patentable.
+     \item<+-> Mathematical formulas in the abstract are not eligible for patent protection.
+     \item<+-> However, a physical machine or process which makes use of a mathematical algorithm is different from an invention which claims the algorithm in the abstract.
+     \item<+-> Hence software is deemed patentable as it's an implementation of an algorithm.
  \end{itemize}
 \end{frame}
 
@@ -169,31 +170,48 @@
 \begin{frame}
   \frametitle{Boldrin \& Levine: General Model Revisited}
   \begin{itemize}
-    \item<+-> Distinguish between productive input and consumption good: $\{k,c\}$
-    \item<+-> $c_t = F(k_t^c,l_t^c)$, $x_t = G(k_t^k,l_t^k)$
-    \item<+-> Agent solves $\sum_{t=0}^\infty\beta^t[u(c_t)-wL_t]$
+    \item<+-> Distinguish between productive input and consumption good: $\{k,c\}$.
+    \item<+-> $c_t = F(k_t^c,l_t^c)$, $x_t = G(k_t^k,l_t^k)$.
+    \item<+-> Agent solves $\sum_{t=0}^\infty\beta^t[u(c_t)-wL_t]$:
     \begin{itemize}
-      \item<+-> $\lambda k_t$ units available tomorrow without allocating resources for production: $k_{t+1} = \lambda k_t + x_t$
-      \item<+-> $\lambda > 1$ gives us the $24/7$ case
+      \item<+-> $\lambda k_t$ units available tomorrow without allocating resources for production: $k_{t+1} = \lambda k_t + x_t$.
+      \item<+-> $\lambda > 1$ gives us the $24/7$ case.
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]\frametitle{Boldrin \& Levine: General Model Revisited}
   \frametitle{}
+    \begin{columns}[T]
+      \begin{column}{.4\textwidth}
+        \begin{block}{}
+        \begin{itemize}
+          \item<+-> Given $\{k_t, x_t, L_t\}$, the solution $c_t = T(k_t,x_t,L_t)$ traces a production possibility frontier\\
+      \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \begin{block}{}
+        \begin{center}
+          \includegraphics[scale=.25]{example_ppf_wire.png}
+          \label{fig:ppf}
+        \end{center}
+      \end{block}
+    \end{column}
+  \end{columns}
+
   \begin{itemize}
-    \item<+-> Given $\{k_t, x_t, L_t\}$, the solution $c_t = T(k_t,x_t,L_t)$ traces a      production possibility frontier\\
-     graph here
-  \item<+-> $L_t$ solves $\underset{L_t}{max}$ $u[T(k_t,x_t,L_t)]-wL_t$
-  \item<+-> The problem restated:
-  \begin{align*}
-    &\nu(k_0)=
-    \max_{\{k_t\}_{t=1}^\infty} \sum_{t=0}^\infty\beta^tV(k_t,k_{t+1} - \lambda k_t)
-      \hspace{13mm}\\
-    &s.t. \ \ \ \ \ \ \lambda k_t + \overline{x}(k_t) \ge k_{t+1} \ge \lambda k_t
-  \end{align*}
+    \item<+-> $L_t$ solves $\underset{L_t}{max}$ $u[T(k_t,x_t,L_t)]-wL_t$
+    \item<+-> The problem restated:
+      \begin{align*}
+        &\nu(k_0)=
+        \max_{\{k_t\}_{t=1}^\infty} \sum_{t=0}^\infty\beta^tV(k_t,k_{t+1} - \lambda k_t)
+          \hspace{13mm}\\
+        &s.t. \ \ \ \ \ \ \lambda k_t + \overline{x}(k_t) \ge k_{t+1} \ge \lambda k_t
+      \end{align*}
   \item<+-> As before, $q_0 = \nu ' (k_0) > 0$ yields positive competitive rents
-  \end{itemize} 
+  \end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -209,7 +227,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]\frametitle{Open source innovation and selling expertise}
   \begin{itemize}
     \item Consumer utility same as the general case
     \item Planners Problem:\\ 
@@ -228,15 +246,15 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]\frametitle{Open source innovation and selling expertise}
   \begin{itemize}
     \item Rearranging we get:
     \begin{equation*}
-       q_0 = sum_{t=0}^\infty(\beta(1-\delta))^tu'(c_t)f'(c_t)
+       q_0 = \sum_{t=0}^\infty(\beta(1-\delta))^tu'(c_t)f'(c_t)
     \end{equation*}
      \item The open source innovation is viable as long as $q_0k_0 > C$
      \item Perhaps more elucidating:\\
-     $q_0 = \underbrace{u'(c_0)f'(h_0)}_{\text{\color{red}first mover advantage}} + \underbrace{(1-\delta)wg'(x_0)}_{\text{\color{red}cost of imitation}}$  
+     $q_0 = \underbrace{u'(c_0)f'(h_0)}_{\text{\color{red}first mover advantage}} +\ \ \underbrace{(1-\delta)wg'(x_0)}_{\text{\color{red}cost of imitation}}$  
   \end{itemize}
 \end{frame}
 
@@ -358,7 +376,7 @@
       where $h_i(j, t)$ is the number of workers employed in R\&D.
       Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
     \item<+-> Successful innovation \textbf{by the leader} increments technology by factor $\lambda > 1$.
-    \item<+-> If the follower innovates, he catches up with the leader (Not patent infringing).
+    \item<+-> If the follower innovates, he catches up with the leader (not patent infringing).
     \item<+-> Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the rung for firm $i$ in industry $j$.
     \item<+-> Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
   \end{itemize}
@@ -369,8 +387,7 @@
 
 \begin{frame}[t]\frametitle{Patent Policy}
   \begin{itemize}
-    \item<+-> Patents expire at Poisson rate: $\eta_{n_j}(t)$
-    \item<+-> Preserves stationarity of the value functions.
+    \item<+-> Patents expire at Poisson rate: $\eta_{n_j}(t)$.
     \item<+-> Law of motion for technology gap in industry $j$:
       \begin{equation*} \label{eq:tech_law_of_motion}
         \eta_j(t + \Delta t) =
@@ -396,9 +413,9 @@
 
   \item<+-> $\bm{\mu}(t) \equiv {\mu_n(t)}_{n=0}^\infty$ is a distribution of \emph{industries} over \emph{technology gaps}.
   
-  \item<+-> Define an \textsf{Allocation} as a sequence of decisions for leaders and followers, sequence of wage rates, and a sequence of distributions over gaps.
+  \item<+-> Define an \textsc{Allocation} as a sequence of decisions for leaders and followers, sequence of wage rates, and a sequence of distributions over gaps.
 
-  \item<+-> Define an \textsf{Equilibrium} as a sequence of decisions, wages, and output such that markets clear, firms' expected profits are maximized, and R\&D policies are best responses. 
+  \item<+-> Define an \textsc{Equilibrium} as a sequence of decisions, wages, and output such that markets clear, firms' expected profits are maximized, and R\&D policies are best responses. 
 
   \end{itemize}
 \end{frame}
@@ -461,7 +478,7 @@
     x_0^*    &= max \big\{G'^{-1}\Bigg(\frac{[v_1     - v_0]}{\omega^*}\Bigg)   ,0\}
   \end{align*}
 
-  Relationship between $v_n$ and $x_n$: Say patent protection weakens:
+  Say patent protection weakens:
   \begin{itemize}
     \item<2-> Disincentive Effect: $\downarrow v_{n+1} \Rightarrow \downarrow v_{n+1} - v_n \Rightarrow \downarrow x_n^*$.
     \item<3-> Incentive Effect: $\downarrow v_{n+1} \Rightarrow \uparrow v_{n+2} - v_{n+1} \Rightarrow \uparrow x_{n+1}^*$.
