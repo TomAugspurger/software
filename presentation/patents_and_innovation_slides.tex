@@ -34,6 +34,16 @@
 \label{sec:copyright_law_and_patents}
 
 \begin{frame}[t]
+	\frametitle{The Copyright Creep}
+	\begin{figure}[hb]
+	  \begin{center}
+	      \includegraphics[scale=.275]{copyright_creep.png}
+	      \label{fig:copyright_creep}
+	  \end{center}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[t]
     \frametitle{Copyright Term Extension Act}
   \begin{itemize}
     \item<+-> CTEA of 1998
@@ -57,7 +67,7 @@
      \item<+-> Prior to 1981 software was effectively not patentable.
      \item<+-> Mathematical formulas in the abstract are not eligible for patent protection.
      \item<+-> However, a physical machine or process which makes use of a mathematical algorithm is different from an invention which claims the algorithm in the abstract.
-     \item<+-> Hence software is deemed patentable as it's an implementation of an algorithm.
+     \item<+-> Software is patentable.
  \end{itemize}
 \end{frame}
 
@@ -135,6 +145,23 @@
 \end{frame}
 
 \begin{frame}[t]
+  \frametitle{Why does open source coexist?}
+  \begin{itemize}
+    \item<+-> Control over product performance.
+    \item<+-> Hobbyists and enthusiasts.
+    \item<+-> Display of skill or resume padding.
+    \begin{itemize}
+        \item<+-> Hann et. al (2004)
+    \end{itemize}
+    \item<+-> Competitive rents (Boldrin \& Levine).
+    \begin{itemize}
+        \item<+-> Which model version fits?
+        \item<+-> What can we say about the implications?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]
   \begin{quotation}
     The evidence (and the common sense of anyone involved with OS software) shows   that the source of competitive rents is the complementary sale of expertise.
   \end{quotation}
@@ -144,22 +171,6 @@
   - Boldrin \& Levine (2009)
 \end{frame}
 
-\begin{frame}[t]
-  \frametitle{Why does open source coexist?}
-  \begin{itemize}
-    \item<+-> Control over product performance.
-    \item<+-> Hobbyists and enthusiasts.
-    \item<+-> Display of skill or resume padding.
-    \begin{itemize}
-        \item<+-> Hall et. al
-    \end{itemize}
-    \item<+-> Competitive rents (Boldrin \& Levine).
-    \begin{itemize}
-        \item<+-> Which model version fits?
-        \item<+-> What can we say about the implications?
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
 \section{Boldrin and Levine (2002)}
 \label{sec:boldrin_and_levine_2002}
@@ -183,21 +194,26 @@
   \end{table}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
   \frametitle{Boldrin \& Levine: General Model Revisited}
   \begin{itemize}
     \item<+-> Distinguish between productive input and consumption good: $\{k,c\}$.
     \item<+-> $c_t = F(k_t^c,l_t^c)$, $x_t = G(k_t^k,l_t^k)$.
-    \item<+-> Agent solves $\sum_{t=0}^\infty\beta^t[u(c_t)-wL_t]$:
-    \begin{itemize}
-      \item<+-> $\lambda k_t$ units available tomorrow without allocating resources for production: $k_{t+1} = \lambda k_t + x_t$.
-      \item<+-> $\lambda > 1$ gives us the $24/7$ case.
-    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Boldrin \& Levine: General Model Revisited}
+  \begin{itemize}
+	  \item<+-> Agent solves $\sum_{t=0}^\infty\beta^t[u(c_t)-wL_t]$:
+	  \begin{itemize}
+        \item<+-> $\lambda k_t$ units available tomorrow: $k_{t+1} = \lambda k_t + x_t$.
+	    \item<+-> $\lambda > 1$ gives us the $24/7$ case.
+	  \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Boldrin \& Levine: General Model Revisited}
-  \frametitle{}
     \begin{columns}[T]
       \begin{column}{.6\textwidth}
         \begin{minipage}[c][.35\textheight][c]{\linewidth}
@@ -229,54 +245,58 @@
   \end{minipage}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
   \frametitle{Open source innovation and selling expertise}
   \begin{itemize}
-    \item Additional productive capacity only requires labor to be produced: $x_t = G(L_t)$ (labor is chosen according to $L_t = g(x_t)$)
-    \item Consumption (services) is produced from productive capacity $c_t = f(h_t)$
-    \item The innovator comes into the market with productive capacity of $h_0$
+    \item<+-> Investment: $x_t = G(L_t)$\\ (labor is chosen according to $L_t = g(x_t)$)
+    \item<+-> Consumption (services): $c_t = f(h_t)$
+    \item<+-> The innovator starts with $h_0$
     \begin{itemize}
-      \item As soon as this occurs, others can begin accumulating productive capacity (expertise in the software)
-      \item $h_{t+1} = x_t + (1-\delta)*h_t$
+      \item<+-> As soon as this occurs, others can begin accumulating productive capacity (expertise in the software)
+      \item<+-> $h_{t+1} = x_t + (1-\delta)*h_t$
     \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Open source innovation and selling expertise}
   \begin{itemize}
-    \item Consumer utility same as the general case
-    \item Planners Problem:\\ 
+    \item<+-> Consumer utility same as the general case
+    \item<+-> Planners Problem:\\ 
     \begin{centering}
       $\nu(h_t) = \underset{x_t \ge 0}{max} \{u(c_t) - wg(x_t) + \beta\nu(h_{t+1})\}$
     \end{centering}
-    \item First order condition:\\
+    \item<+-> First order condition:\\
     \begin{centering}
       $wg'(x_t) = \beta\nu'(h_{t+1})$
     \end{centering}
-    \item This can be decentralized with prices ${p_t, q_t}$ for services and capital
+    \item<+-> This can be decentralized with prices $\{p_t, q_t\}$ for services and capital
     \begin{itemize}
-    \item $p_t = u'(c_t)$
-    \item $q_t = \nu'(h_t) = u'(c_t)f'(h_t) + \beta(1-\delta)\nu'(h_{t+1})$ 
+    \item<+-> $p_t = u'(c_t)$
+    \item<+-> $q_t = \nu'(h_t) = u'(c_t)f'(h_t) + \beta(1-\delta)\nu'(h_{t+1})$ 
     \end{itemize} 
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Open source innovation and selling expertise}
   \begin{itemize}
-    \item Rearranging we get:
+    \item<+-> Rearranging:
     \begin{equation*}
        q_0 = \sum_{t=0}^\infty(\beta(1-\delta))^tu'(c_t)f'(c_t)
     \end{equation*}
-     \item The open source innovation is viable as long as $q_0k_0 > C$
-     \item Perhaps more elucidating:\\
-     $q_0 = \underbrace{u'(c_0)f'(h_0)}_{\text{\color{red}first mover advantage}} +\ \ \underbrace{(1-\delta)wg'(x_0)}_{\text{\color{red}cost of imitation}}$  
+     \item<+-> The open source innovation is viable as long as $q_0k_0 > C$
+     \item<+-> Perhaps more elucidating:\\
+	 \begin{equation*}
+     q_0 = \underbrace{u'(c_0)f'(h_0)}_{\text{\color{red}first mover advantage}} +\ \ \underbrace{(1-\delta)wg'(x_0)}_{\text{\color{red}cost of imitation}} 
+	 \end{equation*} 
   \end{itemize}
 \end{frame}
 
-% TODO: Add conclusion for BL
-% \begin{frame}[t]\frametitle{Conclusion}
-    
-% \end{frame}
+\begin{frame}[t]\frametitle{Conclusion}
+  \vspace{20mm}
+  \begin{itemize}
+    \item<+-> Competitive rents can explain the open source phenomenon 
+  \end{itemize}
+\end{frame}
 
 \section{Acemoglu and Akcigit (2012)}
 \label{sec:acemoglu_and_akcigit_2012}
