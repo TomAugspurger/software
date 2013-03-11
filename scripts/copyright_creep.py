@@ -58,7 +58,7 @@ ax.annotate('Computer software', xy=(1971, 56), xycoords='data',
             arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Automatic renewal', xy=(1990, 75), xycoords='data',
-            xytext=(1980, 48), textcoords='data',
+            xytext=(1970, 48), textcoords='data',
             arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 for loc, spine in ax.spines.items():
