@@ -23,43 +23,43 @@ ax.set_yticks([28, 42, 56, 75, 95])
 
 ax.annotate('Books', xy=(1790, 28), xycoords='data',
             xytext=(1800, 21), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Prints', xy=(1800, 28), xycoords='data',
             xytext=(1820, 23), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Sheet Music', xy=(1832, 42), xycoords='data',
             xytext=(1832, 25), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Photographs', xy=(1890, 42), xycoords='data',
             xytext=(1850, 30), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('All literary works', xy=(1909, 42), xycoords='data',
             xytext=(1909, 25), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Corporate authorship', xy=(1909, 42), xycoords='data',
             xytext=(1920, 30), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Sound recordings', xy=(1909, 42), xycoords='data',
             xytext=(1940, 35), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Motion pictures', xy=(1909, 42), xycoords='data',
             xytext=(1945, 40), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Computer software', xy=(1971, 56), xycoords='data',
             xytext=(1950, 45), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 ax.annotate('Automatic renewal', xy=(1990, 75), xycoords='data',
             xytext=(1980, 48), textcoords='data',
-            arrowprops=dict(arrowstyle="->"), size=16, fantasy='serif')
+            arrowprops=dict(arrowstyle="->"), size=16, family='serif')
 
 for loc, spine in ax.spines.items():
     if loc in ['left', 'bottom']:
