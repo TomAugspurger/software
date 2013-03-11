@@ -16,7 +16,7 @@
 
 \title{Patents and Innovation in Software}
 \author{Caleb Floyd and Tom Augspurger}
-\date{\today}
+\date{March 12, 2013}
 \begin{document}
 \frame{\titlepage}
 
@@ -257,6 +257,10 @@
   \end{itemize}
 \end{frame}
 
+% TODO: Add conclusion for BL
+% \begin{frame}[t]\frametitle{Conclusion}
+    
+% \end{frame}
 
 \section{Acemoglu and Akcigit (2012)}
 \label{sec:acemoglu_and_akcigit_2012}
@@ -309,8 +313,8 @@
       \end{equation*}
       where $\rho$ is the discount factor.
       
-  \item<+-> Also supply 1 unit of labor inelastically.
-  \item<+-> Also own balanced portfolio of intermediate goods producers.
+  \item<+-> Supply 1 unit of labor.
+  \item<+-> Own balanced portfolio of intermediate goods producers.
   \end{itemize}
 \end{frame}
 
@@ -342,7 +346,7 @@
   \begin{itemize}
     \item<+-> Each industry $j \in [0, 1]$ has two firms. Firms denoted by $i$ (leader) and $-i$ (follower).
 
-    \item<+-> Intermediate goods produced according to:
+    \item<+-> Output:
       \begin{equation*} \label{eq:intermediate_production}
         y(j, t) = q_i(j, t)l_i(j, t)
       \end{equation*}
@@ -363,13 +367,13 @@
 
 \begin{frame}[t]\frametitle{Technology-Innovation} 
   \begin{itemize}
-    \item<+-> Innovation follows Poisson process with flow rate:
+    \item<+-> Poisson Innovation:
       \begin{equation*} \label{eq:tech_rd_technology}
         x_i(j, t) = F(h_i(j, t))
       \end{equation*}
       where $h_i(j, t)$ is the number of workers in R\&D.
       Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
-    \item<+-> Successful innovation \textbf{by the leader} increments technology by factor $\lambda > 1$.
+    \item<+-> Leader innovation: technology $\uparrow$ by factor $\lambda > 1$.
     \item<+-> Follower innovation: quick catch-up (not patent infringing).
     \item<+-> Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the rung for firm $i$ in industry $j$.
     \item<+-> Technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
@@ -418,7 +422,7 @@
 \begin{frame}[t]\frametitle{Labor Market} 
   \begin{itemize}
     \item<+-> Three sources of demand: Production of intermediaries, and R\&D by each firm.
-    \item<+-> Combine demand for intermediates: $y(j, t) = q_i(j, t)l_i(j, t)$, and $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ to get
+    \item<+-> Combine the demand for intermediates: $y(j, t) = \frac{q_{-i}(j, t)}{w(t)}Y(t)$ with the production function to get:
 
       \begin{equation*}
         l_n(t) = \frac{\lambda^{-n}Y(t)}{w(t)}
@@ -439,7 +443,7 @@
       \begin{equation*}
         V_n(t) = \mathbb{E}_t \int_{t}^{\infty} exp(-r(s - t))[\Pi(s) - w(s)G(\hat{x}(s))]\,ds 
       \end{equation*}
-    \item<+-> As a ``normalized''value function ($v_n(t) = V_n(t) / Y(t)$):
+    \item<+-> ``Normalized''value function ($v_n(t) = V_n(t) / Y(t)$):
       \begin{equation*} \label{eq:rvf_leader}  % rvf: recursive value function
           pv_n = \max_{x_n \geq 0}\ \ (1 - \lambda^{-n}) - \omega^*G(x_n) + x_n[v_{n+1} - v_n] + [x_{-n}^* + \eta_n][v_0 - v_n]
         \end{equation*}
@@ -464,14 +468,15 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Optimal R\&D} 
-  \begin{align*} \label{eq:ss_rd_policies}
+\begin{frame}[t]\frametitle{Optimal R\&D}
+  \!\!\!\!\!\!\!\!\!\!\!\! % Move it up.
+  \begin{align} \label{eq:ss_rd_policies}
     &x_n^*    = max \big\{G'^{-1}\Bigg(\frac{[v_{n+1} - v_n]}{\omega^*}\Bigg)   ,0\}\\
     &x_{-n}^* = max \big\{G'^{-1}\Bigg(\frac{[v_0  - v_{-n}]}{\omega^*}\Bigg)   ,0\}\\
     &x_0^*    = max \big\{G'^{-1}\Bigg(\frac{[v_1     - v_0]}{\omega^*}\Bigg)   ,0\}
-  \end{align*}
+  \end{align}
 
-  Say patent protection weakens:
+  Say patent protection weakens for $n + 1$:
   \begin{itemize}
     \item<2-> Disincentive Effect: $\downarrow v_{n+1} \Rightarrow \downarrow v_{n+1} - v_n \Rightarrow \downarrow x_n^*$.
     \item<3-> Incentive Effect: $\downarrow v_{n+1} \Rightarrow \uparrow v_{n+2} - v_{n+1} \Rightarrow \uparrow x_{n+1}^*$.
@@ -550,6 +555,13 @@ Given some assumptions (positive R\&D, non-zero profits) \ldots
     \item<+-> State-Dependent patent policy to motive all producers to innovate.
     \item<+-> Found that stronger protection should be given to those further ahead.
   \end{itemize}  
+\end{frame}
+
+% TODO: Add comparison frame.
+\begin{frame}[t]\frametitle{Comparision}
+    
+
+
 \end{frame}
 
 \begin{frame}[t]\frametitle{Conclusion}
