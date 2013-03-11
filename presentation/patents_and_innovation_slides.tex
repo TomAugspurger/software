@@ -341,7 +341,7 @@
 
 \begin{frame}[t]\frametitle{Technology-Intermediate Good} 
   \begin{itemize}
-    \item<+-> Each industry $j \in [0, 1]$ has two firms competing. Firms denoted by $i$ (leader) and $-i$ (follower).
+    \item<+-> Each industry $j \in [0, 1]$ has two firms. Firms denoted by $i$ (leader) and $-i$ (follower).
 
     \item<+-> Intermediate goods produced according to:
       \begin{equation*} \label{eq:intermediate_production}
@@ -349,16 +349,11 @@
       \end{equation*}
       where $q_i$ is a technology level and $l_i$ is labor used. 
 
-    \item<+-> Yields marginal cost:
-      \begin{equation*} \label{eq:marginal_cost}
-        MC_i(j, t) = \frac{w(t)}{q_i(j, t)}
-      \end{equation*}
-
     \item<+-> Limit pricing:
       \begin{equation*} \label{eq:limit_pricing}
         p(j, t) = \frac{w(t)}{q_{-i}(j, t)}      
       \end{equation*}
-    where $-i$ denotes the follower (less advanced technology).
+
     \item<+-> Cobb-Douglas production of final good implies:
     %  TODO: Verify this.
       \begin{equation*}
@@ -373,12 +368,12 @@
       \begin{equation*} \label{eq:tech_rd_technology}
         x_i(j, t) = F(h_i(j, t))
       \end{equation*}
-      where $h_i(j, t)$ is the number of workers employed in R\&D.
+      where $h_i(j, t)$ is the number of workers in R\&D.
       Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
     \item<+-> Successful innovation \textbf{by the leader} increments technology by factor $\lambda > 1$.
-    \item<+-> If the follower innovates, he catches up with the leader (not patent infringing).
+    \item<+-> Follower innovation: quick catch-up (not patent infringing).
     \item<+-> Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the rung for firm $i$ in industry $j$.
-    \item<+-> Mainly concerned with the technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
+    \item<+-> Technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
   \end{itemize}
 \end{frame}
 
@@ -413,9 +408,9 @@
 
   \item<+-> $\bm{\mu}(t) \equiv {\mu_n(t)}_{n=0}^\infty$ is a distribution of \emph{industries} over \emph{technology gaps}.
   
-  \item<+-> Define an \textsc{Allocation} as a sequence of decisions for leaders and followers, sequence of wage rates, and a sequence of distributions over gaps.
+  \item<+-> Loosely define an \textsc{Allocation} as a sequence of decisions for leaders and followers, sequence of wage rates, and a sequence of distributions over gaps.
 
-  \item<+-> Define an \textsc{Equilibrium} as a sequence of decisions, wages, and output such that markets clear, firms' expected profits are maximized, and R\&D policies are best responses. 
+  \item<+-> Loosely define an \textsc{Equilibrium} as a sequence of decisions, wages, and output such that markets clear, firms' expected profits are maximized, and R\&D policies are best responses. 
 
   \end{itemize}
 \end{frame}
@@ -465,17 +460,16 @@
 
     \item<+-> Follower's value function:
       \begin{equation*} \label{eq:rvf_follower}
-        \rho v_{-n} \max_{x_{-n} \geq 0} -\omega^*G(x_{-n}) + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
+        \rho v_{-n} = \max_{x_{-n} \geq 0} -\omega^*G(x_{-n}) + [x_{-n} + \eta_n][v_0 - v_{-n}] + x_n^*[v_{-n-1} - v_{-n}])
       \end{equation*}
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Optimization} 
-  In equilibrium, R\&D policies must follow:
+\begin{frame}[t]\frametitle{Optimal R\&D} 
   \begin{align*} \label{eq:ss_rd_policies}
-    x_n^*    &= max \big\{G'^{-1}\Bigg(\frac{[v_{n+1} - v_n]}{\omega^*}\Bigg)   ,0\}\\
-    x_{-n}^* &= max \big\{G'^{-1}\Bigg(\frac{[v_0  - v_{-n}]}{\omega^*}\Bigg)   ,0\}\\
-    x_0^*    &= max \big\{G'^{-1}\Bigg(\frac{[v_1     - v_0]}{\omega^*}\Bigg)   ,0\}
+    &x_n^*    = max \big\{G'^{-1}\Bigg(\frac{[v_{n+1} - v_n]}{\omega^*}\Bigg)   ,0\}\\
+    &x_{-n}^* = max \big\{G'^{-1}\Bigg(\frac{[v_0  - v_{-n}]}{\omega^*}\Bigg)   ,0\}\\
+    &x_0^*    = max \big\{G'^{-1}\Bigg(\frac{[v_1     - v_0]}{\omega^*}\Bigg)   ,0\}
   \end{align*}
 
   Say patent protection weakens:
