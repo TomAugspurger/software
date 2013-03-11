@@ -183,19 +183,22 @@
 \begin{frame}[t]\frametitle{Boldrin \& Levine: General Model Revisited}
   \frametitle{}
     \begin{columns}[T]
-      \begin{column}{.4\textwidth}
+      \begin{column}{.6\textwidth}
+        \begin{minipage}[c][.35\textheight][c]{\linewidth}
         \begin{itemize}
           \item<+-> Given $\{k_t, x_t, L_t\}$, the solution $c_t = T(k_t,x_t,L_t)$ traces a production possibility frontier\\
-      \end{itemize}
+        \end{itemize}
+        \end{minipage}
     \end{column}
-    \begin{column}{.6\textwidth}
-        \begin{center}
-          \includegraphics[scale=.25]{example_ppf_wire.png}
+    \begin{column}{.45\textwidth}
+      \begin{minipage}[c][.4\textheight][c]{\linewidth}
+        \includegraphics[scale=.30]{example_ppf_wire.png}
           \label{fig:ppf}
-        \end{center}
+        \end{minipage}
     \end{column}
   \end{columns}
 
+  \begin{minipage}[c][.3\textheight][c]{\linewidth}
   \begin{itemize}
     \item<+-> $L_t$ solves $\underset{L_t}{max}$ $u[T(k_t,x_t,L_t)]-wL_t$
     \item<+-> The problem restated:
@@ -207,7 +210,7 @@
       \end{align*}
   \item<+-> As before, $q_0 = \nu ' (k_0) > 0$ yields positive competitive rents
   \end{itemize}
-
+  \end{minipage}
 \end{frame}
 
 \begin{frame}
