@@ -109,9 +109,9 @@
     \end{block}
     \end{column}
     \begin{column}{.5\textwidth}
-    \begin{block}{}
+    % \begin{block}{}
       \includegraphics[height=2.75in,angle=0]{Amazon.png}
-    \end{block}
+    % \end{block}
     \end{column}
     \end{columns}
 \end{frame}
@@ -133,7 +133,6 @@
 \!\!\!\!\!\!\!\!\!\!\!\!\!\!
 \begin{figure}[hb]
   \begin{center}
-<<<<<<< HEAD
       \includegraphics[scale=.5]{tech_and_all.png}
       \label{fig:app_year}
   \end{center}
@@ -368,7 +367,6 @@
   \begin{itemize}
     \item<+-> Daron Acemoglu and Ufuk Akcigit (2012) - Intellectual Property Rights Policy, Competition And Innovation.
     \item<+-> Optimal \emph{state-dependent} Intellectual Property Rights policy in a dynamic environment.
-    \item<+-> IPR depends on technology gap in an industry (state-dependence).
     \item<+-> Standard tradeoff between monopoly distortions and motivation.
     \item<+-> Novel motivation for leaders.
   \end{itemize}
@@ -398,24 +396,24 @@
 %   \end{itemize}
 % \end{frame}
 
-\begin{frame}[t]\frametitle{Preview}
-    
-\begin{itemize}
-  \item Consumers eating final good. Supplying Labor.
-  \item Final goods producer aggregates.
-  \item Intermediate producers hiring labor and innovating.
-  \item State-dependent patent policy will motivate monopolists.
-  \item Describe equilibrium vaguely.
-  \item Numerical example to compare optimal policies.
-\end{itemize}
-\end{frame}
-
 \begin{frame}[t]\frametitle{Motivation}
     
 \begin{center}
   \includegraphics[scale=.25]{microsoft_rd.png}
   \label{fig:}
 \end{center}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Preview}
+    
+\begin{itemize}
+  \item<+-> Consumers eating final good. Supplying Labor.
+  \item<+-> Final goods producer aggregates.
+  \item<+-> Intermediate producers hiring labor and innovating.
+  \item<+-> State-dependent patent policy will motivate monopolists.
+  \item<+-> Describe equilibrium vaguely.
+  \item<+-> Numerical example to compare optimal policies.
+\end{itemize}
 \end{frame}
 
 
@@ -492,7 +490,7 @@
       Also define $G(x_i(j,t)) \equiv F^{-1}(x_i(j,t))$ (R\&D employment).
     \item<+-> Leader innovation: technology $\uparrow$ by factor $\lambda > 1$.
     \item<+-> Follower innovation: quick catch-up (not patent infringing).
-    \item<+-> Technology levels are ladder rungs: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the rung for firm $i$ in industry $j$.
+    \item<+-> Technology ladder: $q_i(j, t) = \lambda^{n_{ij}(t)}$, with $n_{ij}(t)$ giving the rung.
     \item<+-> Technology gap: $n_j(t) = n_{ij}(t) - n_{-ij}(t)$
   \end{itemize}
 \end{frame}
@@ -566,8 +564,6 @@
         \end{equation*}
     \item<+-> Instantaneous operating profits: $(1 - \lambda^{-n})$.
     \item<+-> R\&D costs: $\omega^*(t)G(x_n(t))$.
-    \item<+-> With probability $x_n(t)$ you innovate.
-    \item<+-> With probability $x_{-n}^*(t) + \eta_n$ he innovates or your patent expires.
   \end{itemize}
 \end{frame}
 
@@ -634,21 +630,23 @@ Given some assumptions (positive R\&D, non-zero profits) \ldots
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Full IPR} 
+\begin{frame}[t]\frametitle{Comparing Optimal Policies} 
   \begin{center}
     \includegraphics[scale=.31]{full_ipr_value.png}
     \label{fig:full_ipr_value}
   \end{center}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Full IPR} 
+\begin{frame}[t]\frametitle{Comparing Optimal Policies} 
+  \vspace{-5mm}
   \begin{center}
     \includegraphics[scale=.28]{full_ipr_rnd.png}
     \label{fig:full_ipr_rnd}
   \end{center}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Full IPR} 
+\begin{frame}[t]\frametitle{Comparing Optimal Policies} 
+  \vspace{-5mm}
   \begin{center}
     \includegraphics[scale=.28]{full_ipr_distbn.png}
     \label{fig:full_ipr_distbn}
@@ -690,7 +688,7 @@ Given some assumptions (positive R\&D, non-zero profits) \ldots
 \begin{frame}[t]\frametitle{Conclusion}
   \begin{itemize}
 
-    \item \includegraphics[scale=.025]{octocat.jpg} In the open source spirit:
+    \item \includegraphics[scale=.025]{octocat.jpg} In the open source spirit, fork away!
     \begin{itemize}
       \item https://github.com/TomAugspurger/software
       \item https://github.com/CalebFloyd/software
