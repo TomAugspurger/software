@@ -1,6 +1,6 @@
 \documentclass{beamer}
-\usetheme{Boadilla}
-\usecolortheme{seagull}
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
 \setbeamertemplate{itemize items}[default]
 \setbeamertemplate{enumerate items}[default]
 \setbeamercovered{transparent}
@@ -21,7 +21,7 @@
 \frame{\titlepage}
 
 \begin{frame}[t]\frametitle{This Project}
-  \vspace{4mm}
+  \vspace{10mm}
   \begin{itemize}
     \item Investigate the state of intellectual property protection.
 	\begin{itemize}
@@ -31,13 +31,13 @@
 	\begin{itemize}
 	  \item Find commonalities in competing theories. 
 	  \item Search for existing empirical results.
-	  \item Investigate the existence of the open source phenomenon.
+	  \item Investigate the open source phenomenon.
 	\end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Where are we?}
-	\vspace{5mm}
+	\vspace{20mm}
 	\begin{itemize}
 	  \item Some theories are amenable; some aren't.
 	  \item One example where the open source phenomenon fits.
@@ -46,7 +46,7 @@
 \end{frame}
 
 \begin{frame}[t]\frametitle{Outline}
-    
+	\vspace{20mm}
 \begin{itemize}
   \item Copyright Law and Patents.
   \item Boldrin and Levine (2008).
@@ -99,8 +99,9 @@
  \end{itemize}
 \end{frame}
 
-\begin{frame}[t]
-    \frametitle{Amazon One-Click Patent}
+
+\begin{frame}[t]\frametitle{Amazon One-Click Patent}
+\vspace{-4mm}	
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
     \begin{block}{}
@@ -132,6 +133,7 @@
 \!\!\!\!\!\!\!\!\!\!\!\!\!\!
 \begin{figure}[hb]
   \begin{center}
+<<<<<<< HEAD
       \includegraphics[scale=.5]{tech_and_all.png}
       \label{fig:app_year}
   \end{center}
@@ -204,8 +206,8 @@
     \item<+-> Hobbyists and enthusiasts.
     \item<+-> Display of skill or resume padding. % TODO: TOC depth
     \begin{itemize}
-        \item<+-> Hann et. al (2004)
-        \item<+-> Lerner and Tirole (2002)
+        \item Lerner and Tirole (2002)
+        \item Hann et. al (2004)
     \end{itemize}
     \item<+-> Competitive rents (Boldrin \& Levine).
     \begin{itemize}
@@ -293,17 +295,27 @@
   \end{minipage}
 \end{frame}
 
-% TODO: Insert slide for Pills and Reverse Engineering
+\begin{frame}[t]\frametitle{Special Case}
+	\vspace{5mm}
+	Pills and Reverse Engineering is offered as a special case of the general model.
+	\begin{itemize}
+		\item This special case fits their idea of competitive rents in open source.
+		\item $c_t$ = services, $h_t$ = expertise 
+	\end{itemize}
+\end{frame}
 
 \begin{frame}[t]
-  \frametitle{Open source innovation and selling expertise}
+  \frametitle{Open Source Innovation and Selling Expertise}
   \begin{itemize}
     \item<+-> Investment: $x_t = G(L_t)$\\ (labor is chosen according to $L_t = g(x_t)$)
     \item<+-> Consumption (services): $c_t = f(h_t)$
-    \item<+-> The innovator starts with $h_0$
+	\item<+-> Law of motion:\\
+	\hspace{5mm}$h_{t+1} = x_t + (1-\delta)h_t$
+	\item<+-> Innovator starts with $h_0$
     \begin{itemize}
-      \item<+-> As soon as this occurs, others can begin accumulating productive capacity (expertise in the software)
-      \item<+-> $h_{t+1} = x_t + (1-\delta)*h_t$
+      \item<+-> Instantly, others can begin accumulating productive capacity (expertise in the the software)\\
+	  \vspace{2mm}
+	  \hspace{25mm}$x_0^* = G(L_0^*)$
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -312,13 +324,9 @@
   \begin{itemize}
     \item<+-> Consumer utility same as the general case
     \item<+-> Planners Problem:\\ 
-    \begin{centering}
-      $\nu(h_t) = \underset{x_t \ge 0}{max} \{u(c_t) - wg(x_t) + \beta\nu(h_{t+1})\}$
-    \end{centering}
+    \hspace{10mm}$\nu(h_t) = \underset{x_t \ge 0}{max} \{u(c_t) - wg(x_t) + \beta\nu(h_{t+1})\}$
     \item<+-> First order condition:\\
-    \begin{centering}
-      $wg'(x_t) = \beta\nu'(h_{t+1})$
-    \end{centering}
+    \hspace{15mm}$wg'(x_t) = \beta\nu'(h_{t+1})$
     \item<+-> This can be decentralized with prices $\{p_t, q_t\}$ for services and capital
     \begin{itemize}
     \item<+-> $p_t = u'(c_t)$
