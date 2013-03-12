@@ -150,7 +150,7 @@ j.ix[1975:2002].plot(secondary_y=['Tech'], grid=True, ax=ax)
 ax.set_xlabel('')
 ax.set_ylabel('Patents Granted')
 
-plt.savefig('tech_and_all.png', dpi=300)
+plt.savefig('../resources/tech_and_all.png', dpi=300)
 # By grant year, adjusted and unadjusted
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
