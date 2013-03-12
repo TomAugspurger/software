@@ -137,6 +137,20 @@ ax1.set_xlim(1975, 2002)
 # fig.tight_layout()
 plt.savefig('../resources/application_year.png', dpi=300)
 
+# Both twined
+cts = df.groupby(df['appyear'])['patent'].count()
+ctst = t.groupby(t['appyear'])['patent'].count()
+j = pd.concat([cts, ctst], axis=1)
+j.columns = ['All', 'Tech']
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+j.ix[1975:2002].plot(secondary_y=['Tech'], grid=True, ax=ax)
+ax.set_xlabel('')
+ax.set_ylabel('Patents Granted')
+
+plt.savefig('tech_and_all.png', dpi=300)
 # By grant year, adjusted and unadjusted
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -230,8 +244,14 @@ cats = ['icl', 'icl_class', 'iclnum', 'cat', 'cat_ocl', 'cclass', 'subcat', 'sub
 jcats = df[cats]
 gr = df[['patent']].groupby((jcats['cat'], df['appyear']))
 by_cat_ts = gr.count().unstack(level='cat').ix[1975:2002]
+d = {('patent', 1.0): 'chemical', ('patent', 2.0): 'computers', ('patent', 3.0): 'medical',
+     ('patent', 4.0): 'electronic', ('patent', 5.0): 'mechanical', ('patent', 6.0): 'other'}
+by_cat_ts = by_cat_ts.rename(columns=d)
 plt.figure()
-ax = by_cat_ts.plot()
+ax = by_cat_ts.plot(grid=True)
+ax.set_xlabel('')
+ax.set_xlim(1975, 2002)
+ax.set_ylabel('Patents Granted')
 plt.savefig('../resources/by_cat_year.png')
 
 
