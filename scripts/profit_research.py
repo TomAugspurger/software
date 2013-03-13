@@ -3,6 +3,7 @@
 # http://www.nber.org/~jbessen/dynass.dat.zip
 
 import pandas as pd
+import statsmodels.api as sm
 
 df = pd.read_csv('/Volumes/HDD/Users/tom/DataStorage/Patents/dynass.dat', sep='\t', index_col='pdpass')
 df2 = pd.read_csv('/Volumes/HDD/Users/tom/DataStorage/Patents/pdpcohdr.dat', sep='\t')
@@ -38,5 +39,10 @@ COSTAT:
 NAICS: Classifier.
 """
 # Only NaNs are in XRD
-s = wrds[['GP', 'XRD', 'NAICS']].dropna()
-
+s = wrds[['GP', 'XRD']].dropna()
+gr = s.groupby(level='gvkey')
+res = gr.corr(min_periods=8)
+res = res.dropna()
+js = s
+js.index = s.index.droplevel(0)
+model = sm.tsa.ARMA(js.GP, order=(2, 2), exog=js[['const', 'XRD']])
