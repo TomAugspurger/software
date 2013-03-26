@@ -106,5 +106,40 @@ ax = sx[['xrdq', 'profit']].plot(secondary_y=['profit'], grid=True)
 plt.figure()
 ax2 = lag_scatter(sx.xrdq[1:], sx.profit[1:], n=8)
 """
-suby = y.ix[:100]
-subx = x.ix[:100]
+
+
+def many_plots(df, ax=None, filter=False):
+    """Generator to go over outer keys (companies) of the dataframe and add
+    them all to one plot.  May want pct_chng to deal with scale issues.
+
+    Go over df.index.levels[0] but use exceptions probaly.
+
+    example:
+        gen = many_plots(sub.pct_change().dropna())
+        gen2 = it.islice(gen, 50)
+        for i in gen2:
+            i
+    """
+    for idx in df.index.levels[0]:
+        if ax is None:
+            fig = plt.figure()
+            ax = fig.add_subplot(111)
+        try:
+            if filter:
+                new = df.ix[idx][['xrdq', 'profit']].apply(
+                    lambda x: sm.tsa.filters.hpfilter(x)[0])
+                ax = new.plot(secondary_y=['profit'], ax=ax, legend=False,
+                              alpha=.25, xlim=(726952.0, 734045.0))
+            else:
+                ax = df[['xrdq', 'profit']].ix[idx].plot(
+                    secondary_y=['profit'], ax=ax, legend=False,
+                    alpha=.25, xlim=(726952.0, 734045.0))
+        except (IndexError, ValueError):
+            continue
+        yield ax
+
+
+### With Indicies
+sub = df[['xrdq', 'profit', 'naics']].dropna()
+sectors = sub.reset_index().groupby([
+    'naics', 'datadate'])[['profit', 'xrdq']]
