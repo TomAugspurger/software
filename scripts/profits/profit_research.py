@@ -32,9 +32,29 @@ s = pd.HDFStore('/Volumes/HDD/Users/tom/DataStorage/Patents/patents.h5')
 df = s.select('profit')
 
 sub = df[['xrdq', 'profit']]
-sub.xrdq = sub.xrdq.fillna(method='ffill', limit=4)
-sub.profit = sub.profit.fillna(method='ffill', limit=4)
+
+
+# Looking at nans:
+def check_nans(frame, n=4):
+    """
+    Find percentage NaN for various ffills.
+    """
+    xrdq_pc, profit_pc = [], []
+    for i in range(n):
+        temp_frame = sub.groupby(level='gvkey', group_keys=False).fillna(
+            method='ffill', limit=i)
+        null_xrdq = sum(temp_frame.xrdq.isnull()) / len(temp_frame)
+        null_profit = sum(temp_frame.profit.isnull()) / len(temp_frame)
+        xrdq_pc.append(null_xrdq)
+        profit_pc.append(null_profit)
+        print(
+            "\nlimit={0}, xrdq={1}, profit={2}".format(i, null_xrdq,
+                                                       null_profit))
+    return xrdq_pc, profit_pc
+# sub.xrdq = sub.xrdq.fillna(method='ffill', limit=4)
+# sub.profit = sub.profit.fillna(method='ffill', limit=4)
 sub = sub.dropna()
+
 
 sub = sm.add_constant(sub)
 grouped = sub.groupby(level='gvkey', group_keys=False)
@@ -74,6 +94,7 @@ res = sm.OLS(sub.dropna().lag_profit, sub.dropna()[['const', 'xrdq']]).fit()
 print(res.summary())
 ax = plt.scatter(sub.dropna().xrdq, sub.dropna().lag_profit, s=4, marker='.', c='k', alpha=.5)
 
+locations = sub['loc'].unique()
 
 """
 Fun Example:
