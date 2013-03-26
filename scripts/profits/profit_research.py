@@ -4,6 +4,7 @@
 
 import pandas as pd
 import statsmodels.api as sm
+import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt
 
 """
@@ -91,6 +92,7 @@ lag_profit = grouped.apply(lambda x: x.profit.shift(8))
 sub['lag_profit'] = lag_profit
 
 res = sm.OLS(sub.dropna().lag_profit, sub.dropna()[['const', 'xrdq']]).fit()
+res = smf.ols('lag_profit ~ xrdq', data=sub.dropna()).fit()
 print(res.summary())
 ax = plt.scatter(sub.dropna().xrdq, sub.dropna().lag_profit, s=4, marker='.', c='k', alpha=.5)
 
@@ -99,10 +101,10 @@ locations = sub['loc'].unique()
 """
 Fun Example:
 
-sx = joined.ix[006066]
+sx = sub.ix[006066]
 ax = sx[['xrdq', 'profit']].plot(secondary_y=['profit'], grid=True)
 plt.figure()
-ax2 = lag_scatter(sx.xrdq[1:], sy[1:], n=8)
+ax2 = lag_scatter(sx.xrdq[1:], sx.profit[1:], n=8)
 """
 suby = y.ix[:100]
 subx = x.ix[:100]
