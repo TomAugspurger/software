@@ -134,12 +134,17 @@ def many_plots(df, ax=None, filter=False):
                 ax = df[['xrdq', 'profit']].ix[idx].plot(
                     secondary_y=['profit'], ax=ax, legend=False,
                     alpha=.25, xlim=(726952.0, 734045.0))
+            print(idx)
         except (IndexError, ValueError):
             continue
         yield ax
 
 
 ### With Indicies
+inds = pd.read_table(
+    'http://www.census.gov/eos/www/naics/reference_files_tools/2007/naics07.txt',
+    skiprows=[0, 1], index_col=0, names=['naics', 'name'])
+
 sub = df[['xrdq', 'profit', 'naics']].dropna()
 sectors = sub.reset_index().groupby([
     'naics', 'datadate'])[['profit', 'xrdq']]
